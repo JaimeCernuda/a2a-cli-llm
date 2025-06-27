@@ -1,0 +1,81 @@
+# A2A CLI Configuration File
+# This file configures LLM providers and agent behavior
+
+# Default LLM provider to use (gemini, claude, ollama)
+default_provider: "gemini"
+
+# Agent configuration
+agent:
+  name: "A2A CLI AI Agent"
+  description: "An intelligent agent powered by configurable LLM providers"
+  version: "0.2.0"
+  
+  # Custom system prompt (optional)
+  system_prompt: |
+    You are an intelligent AI assistant integrated into an A2A (Agent-to-Agent) CLI system.
+    
+    Your role:
+    - Provide helpful, accurate, and conversational responses
+    - Assist with questions, tasks, coding help, and general information
+    - Be friendly but professional
+    - Keep responses concise unless detail is specifically requested
+    
+    Context:
+    - You're running in a CLI environment
+    - Users may be developers, researchers, or general users
+    - You can process text and files sent to you
+    - You're part of a distributed agent system that follows the A2A protocol
+
+# LLM Provider configurations
+providers:
+  # Google Gemini (free tier available)
+  gemini:
+    # Get your API key from: https://makersuite.google.com/app/apikey
+    api_key: "${GEMINI_API_KEY}"  # Set environment variable
+    model: "gemini-1.5-flash"  # Free model with good performance
+    max_tokens: 2048
+    temperature: 0.7
+    # Alternative models: gemini-1.5-pro, gemini-1.0-pro
+    
+  # Anthropic Claude (requires paid subscription)
+  claude:
+    # Get your API key from: https://console.anthropic.com/
+    api_key: "${CLAUDE_API_KEY}"  # Set environment variable
+    model: "claude-3-5-haiku-20241022"  # Fast and cost-effective
+    max_tokens: 2048
+    temperature: 0.7
+    # Alternative models: claude-3-5-sonnet-20241022, claude-3-opus-20240229
+    
+  # Ollama (local models)
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "llama3.2:3b"  # Good balance of speed and quality
+    max_tokens: 2048
+    temperature: 0.7
+    timeout: 60
+    # Popular models: llama3.2:1b, qwen2.5:3b, phi3:mini, mistral:7b
+
+# Server configuration
+server:
+  host: "localhost"
+  port: 8000
+  log_level: "info"
+  
+  # Enable/disable streaming
+  streaming: true
+  
+  # Enable/disable push notifications
+  push_notifications: false
+
+# Client configuration  
+client:
+  timeout: 30
+  max_retries: 3
+  
+  # Default to streaming if available
+  prefer_streaming: true
+
+# Logging configuration
+logging:
+  level: "info"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

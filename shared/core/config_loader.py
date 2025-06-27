@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 import yaml
 from dataclasses import dataclass, asdict
+from typing import List
 
 
 logger = logging.getLogger(__name__)
@@ -43,6 +44,15 @@ class ServerConfig:
 
 
 @dataclass
+class MCPServerConfig:
+    """MCP server configuration."""
+    name: str
+    command: List[str]
+    cwd: Optional[str] = None
+    enabled: bool = True
+
+
+@dataclass
 class ClientConfig:
     """Client configuration."""
     timeout: int = 30
@@ -63,6 +73,7 @@ class A2AConfig:
     default_provider: str = "gemini"
     agent: AgentConfig = None
     providers: Dict[str, ProviderConfig] = None
+    mcp_servers: Dict[str, MCPServerConfig] = None
     server: ServerConfig = None
     client: ClientConfig = None
     logging: LoggingConfig = None
@@ -72,6 +83,8 @@ class A2AConfig:
             self.agent = AgentConfig()
         if self.providers is None:
             self.providers = {}
+        if self.mcp_servers is None:
+            self.mcp_servers = {}
         if self.server is None:
             self.server = ServerConfig()
         if self.client is None:
@@ -178,6 +191,17 @@ class ConfigLoader:
                             temperature=provider_data.get("temperature", 0.7),
                             base_url=provider_data.get("base_url"),
                             timeout=provider_data.get("timeout", 60)
+                        )
+                
+                # Parse MCP server configs
+                if "mcp_servers" in config_data:
+                    config.mcp_servers = {}
+                    for server_name, server_data in config_data["mcp_servers"].items():
+                        config.mcp_servers[server_name] = MCPServerConfig(
+                            name=server_name,
+                            command=server_data.get("command", []),
+                            cwd=server_data.get("cwd"),
+                            enabled=server_data.get("enabled", True)
                         )
                 
                 # Parse server config

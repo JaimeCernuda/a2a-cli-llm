@@ -149,7 +149,7 @@ I can process text messages and provide basic responses."""
     def _handle_file_analysis(self, context: RequestContext) -> str:
         """Handle requests involving file analysis."""
         # Check if there are file attachments in the message
-        message = context.get_incoming_message()
+        message = context.message
         file_count = 0
         file_info = []
         

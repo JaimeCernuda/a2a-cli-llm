@@ -1,0 +1,29 @@
+# Developer persona configuration for A2A CLI
+default_provider: "ollama"
+
+agent:
+  name: "A2A Developer Assistant"
+  description: "Expert software developer with deep technical knowledge"
+  version: "0.2.0"
+  persona: "developer"
+
+providers:
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "llama3.2:3b"
+    max_tokens: 2048
+    temperature: 0.3  # Lower temperature for more precise code assistance
+    timeout: 30
+
+server:
+  host: "localhost"
+  port: 8000
+  log_level: "info"
+  streaming: true
+
+client:
+  timeout: 30
+  prefer_streaming: true
+
+logging:
+  level: "info"

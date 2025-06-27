@@ -23,6 +23,18 @@ uv run server --llm --config docs/config.yaml
 uv run client interactive --agent http://localhost:8000
 ```
 
+### 🎭 Persona-Powered Agent
+```bash
+# Start with developer persona
+uv run server --llm --config test_config_developer.yaml
+
+# Start with teacher persona  
+uv run server --llm --config test_config_teacher.yaml
+
+# Test persona functionality
+uv run python demo_persona_loading.py
+```
+
 ## 📁 Project Structure
 
 ```
@@ -90,6 +102,7 @@ uv run python tests/validate_system.py
 
 - [Development Notes](docs/DEVELOPMENT_NOTES.md) - Detailed implementation guide
 - [Configuration Guide](docs/config.yaml) - LLM provider setup
+- [**🎭 Persona System**](docs/PERSONA_SYSTEM.md) - AI personality customization
 - [Example Commands](examples/test_commands.md) - Usage examples
 
 ## 🌟 Features
@@ -104,10 +117,17 @@ uv run python tests/validate_system.py
 ### Server Features  
 - Rule-based and LLM-powered modes
 - Multiple LLM provider support
+- **🎭 Persona System**: Customizable AI personalities and expertise
 - Configurable agent behavior
 - Streaming responses
 - File processing capabilities
 - Health checks and fallback mechanisms
+
+### 🎭 Persona System
+- **Pre-built Personas**: Developer, Teacher, Analyst, Default
+- **Custom Personas**: Create your own AI personalities via Markdown files
+- **Dynamic Loading**: Configure personas through external config files
+- **Expertise Specialization**: Tailor responses to specific domains
 
 ## 🤝 Development
 

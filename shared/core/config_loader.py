@@ -17,6 +17,7 @@ class AgentConfig:
     name: str = "A2A CLI AI Agent"
     description: str = "An intelligent agent powered by configurable LLM providers"
     version: str = "0.2.0"
+    persona: Optional[str] = None
     system_prompt: Optional[str] = None
 
 
@@ -162,6 +163,7 @@ class ConfigLoader:
                         name=agent_data.get("name", "A2A CLI AI Agent"),
                         description=agent_data.get("description", "An intelligent agent powered by configurable LLM providers"),
                         version=agent_data.get("version", "0.2.0"),
+                        persona=agent_data.get("persona"),
                         system_prompt=agent_data.get("system_prompt")
                     )
                 

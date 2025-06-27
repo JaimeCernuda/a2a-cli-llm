@@ -7,6 +7,7 @@ agent:
   name: "A2A CLI AI Test Agent"
   description: "Test agent with LLM capabilities"
   version: "0.2.0"
+  persona: "default"  # Options: default, developer, analyst, teacher, or path to custom file
   system_prompt: |
     You are a helpful AI assistant in a test environment. Keep responses concise and friendly.
     When asked about yourself, mention you're an A2A protocol agent with LLM capabilities.

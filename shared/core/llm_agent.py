@@ -11,6 +11,7 @@ from a2a.utils import new_agent_text_message
 
 from shared.llm import LLMProviderFactory, LLMProvider, LLMError
 from .config_loader import A2AConfig, ConfigLoader
+from .persona_loader import PersonaLoader
 from .utils import extract_text_from_message
 
 
@@ -36,6 +37,10 @@ class LLMAgentExecutor(AgentExecutor):
         
         # Agent info
         self.name = self.config.agent.name
+        
+        # Load persona if specified
+        self.system_prompt = self._load_system_prompt()
+        
         logger.info(f"Initialized {self.name} with {self.provider_name} provider")
     
     async def _ensure_provider(self) -> LLMProvider:
@@ -90,6 +95,25 @@ class LLMAgentExecutor(AgentExecutor):
         # If all providers fail, raise an error
         raise LLMError("All configured LLM providers failed", "all")
     
+    def _load_system_prompt(self) -> str:
+        """Load system prompt from persona or config."""
+        # If a persona is specified, load it
+        if self.config.agent.persona:
+            try:
+                persona_prompt = PersonaLoader.load_persona(self.config.agent.persona)
+                logger.info(f"Loaded persona: {self.config.agent.persona}")
+                return persona_prompt
+            except (FileNotFoundError, IOError) as e:
+                logger.warning(f"Failed to load persona '{self.config.agent.persona}': {e}")
+                logger.info("Falling back to system_prompt from config")
+        
+        # Fall back to system_prompt from config
+        if self.config.agent.system_prompt:
+            return self.config.agent.system_prompt
+        
+        # Ultimate fallback
+        return "You are a helpful AI assistant."
+    
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         """
         Execute the agent logic using LLM providers.
@@ -112,7 +136,7 @@ class LLMAgentExecutor(AgentExecutor):
             # Generate response using LLM
             llm_response = await provider.generate(
                 prompt=user_input,
-                system_prompt=self.config.agent.system_prompt,
+                system_prompt=self.system_prompt,
                 max_tokens=provider.config.get("max_tokens", 2048),
                 temperature=provider.config.get("temperature", 0.7)
             )

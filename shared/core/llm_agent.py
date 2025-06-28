@@ -2,6 +2,8 @@
 
 import asyncio
 import logging
+import uuid
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from a2a.server.agent_execution import AgentExecutor
@@ -13,6 +15,7 @@ from shared.llm import LLMProviderFactory, LLMProvider, LLMError, LLMResponse
 from shared.mcp import MCPManager
 from .config_loader import A2AConfig, ConfigLoader
 from .persona_loader import PersonaLoader
+from .tool_context import ToolContextManager, ToolResult
 from .utils import extract_text_from_message
 
 
@@ -38,6 +41,9 @@ class LLMAgentExecutor(AgentExecutor):
         
         # Initialize MCP manager
         self.mcp_manager = MCPManager()
+        
+        # Initialize tool context manager for agentic behavior
+        self.tool_context_manager = ToolContextManager()
         
         # Agent info
         self.name = self.config.agent.name
@@ -366,7 +372,7 @@ class LLMAgentExecutor(AgentExecutor):
     
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         """
-        Execute the agent logic using LLM providers.
+        Execute the agent logic using LLM providers with agentic tool chaining.
         
         Args:
             context: Request context containing message and metadata
@@ -375,7 +381,10 @@ class LLMAgentExecutor(AgentExecutor):
         try:
             # Get user input
             user_input = context.get_user_input()
-            logger.info(f"Processing LLM request: {user_input[:100]}...")
+            logger.info(f"Processing agentic LLM request: {user_input[:100]}...")
+            
+            # Create or get conversation context
+            conversation_id = context.context_id or str(uuid.uuid4())
             
             # Prepare context from the full message
             message_context = self._extract_message_context(context)
@@ -386,17 +395,20 @@ class LLMAgentExecutor(AgentExecutor):
             # Get available tools in Ollama format
             ollama_tools = self._get_ollama_tools_schema()
             
-            # Generate response using LLM with tools
+            # Enhanced system prompt with conversation context
+            enhanced_system_prompt = self._build_enhanced_system_prompt(conversation_id, user_input)
+            
+            # Generate response using LLM with tools and conversation context
             llm_response = await provider.generate(
                 prompt=user_input,
-                system_prompt=self.system_prompt,
+                system_prompt=enhanced_system_prompt,
                 tools=ollama_tools if ollama_tools else None,
                 max_tokens=provider.config.get("max_tokens", 2048),
                 temperature=provider.config.get("temperature", 0.7)
             )
             
-            # Handle native tool calls if present
-            response_text = await self._handle_ollama_tool_calls(llm_response)
+            # Handle native tool calls with agentic behavior
+            response_text = await self._handle_agentic_tool_calls(llm_response, conversation_id)
             
             # Add provider info to response if requested
             if "model" in user_input.lower() or "provider" in user_input.lower():
@@ -426,6 +438,125 @@ class LLMAgentExecutor(AgentExecutor):
             logger.error(f"Unexpected error in LLM agent: {e}")
             error_message = f"I encountered an unexpected error: {str(e)}"
             await event_queue.enqueue_event(new_agent_text_message(error_message))
+    
+    def _build_enhanced_system_prompt(self, conversation_id: str, user_input: str) -> str:
+        """Build enhanced system prompt with conversation context and tool guidance."""
+        # Base system prompt (persona)
+        base_prompt = self.system_prompt
+        
+        # Get conversation context
+        context_summary = self.tool_context_manager.get_context_for_llm(conversation_id)
+        tool_guidance = self.tool_context_manager.generate_tool_guidance(conversation_id)
+        
+        # Build enhanced prompt
+        enhanced_prompt = base_prompt
+        
+        if context_summary and context_summary.strip():
+            enhanced_prompt += f"\n\n## Current Conversation Context:\n{context_summary}"
+        
+        if tool_guidance and tool_guidance.strip():
+            enhanced_prompt += f"\n\n## Tool Usage Guidance:\n{tool_guidance}"
+        
+        # Add specific guidance for tool result reuse
+        enhanced_prompt += """
+
+## Critical Tool Chaining Instructions:
+- ALWAYS use the exact file paths returned by list_bp5 in subsequent tool calls
+- When inspect_variables or other tools need a filename, use the full absolute path from previous tool results
+- For ADIOS2 analysis, ALWAYS start with list_bp5 to discover available files
+- Use the discovered file paths exactly as returned - do not modify or truncate them
+- If a tool call fails due to file not found, check the exact paths from list_bp5 results
+"""
+        
+        return enhanced_prompt
+    
+    async def _handle_agentic_tool_calls(self, llm_response: LLMResponse, conversation_id: str) -> str:
+        """Handle tool calls with agentic intelligence and conversation context."""
+        response_text = llm_response.text
+        tool_calls = llm_response.metadata.get("tool_calls", [])
+        
+        if not tool_calls:
+            return response_text
+        
+        logger.info(f"Processing {len(tool_calls)} agentic tool calls")
+        
+        # Execute each tool call with context-aware parameter enhancement
+        tool_results = []
+        for tool_call in tool_calls:
+            try:
+                function = tool_call.get("function", {})
+                tool_name = function.get("name")
+                raw_arguments = function.get("arguments", {})
+                
+                if tool_name:
+                    # Enhance arguments using conversation context
+                    enhanced_arguments = self.tool_context_manager.suggest_parameters(
+                        tool_name, conversation_id, raw_arguments
+                    )
+                    
+                    # Log parameter enhancement
+                    if enhanced_arguments != raw_arguments:
+                        logger.info(f"Enhanced parameters for {tool_name}: {raw_arguments} -> {enhanced_arguments}")
+                    
+                    # Check for missing prerequisites
+                    missing_prereqs = self.tool_context_manager.should_suggest_prerequisites(tool_name, conversation_id)
+                    if missing_prereqs:
+                        logger.info(f"Tool {tool_name} has missing prerequisites: {missing_prereqs}")
+                        # For now, continue with the call - the LLM should handle prerequisites
+                    
+                    # Execute the tool call
+                    start_time = datetime.now()
+                    result = await self.mcp_manager.call_tool(tool_name, enhanced_arguments)
+                    execution_time = (datetime.now() - start_time).total_seconds() * 1000
+                    
+                    # Create tool result object
+                    tool_result = ToolResult(
+                        tool_name=tool_name,
+                        arguments=enhanced_arguments,
+                        result=result,
+                        timestamp=datetime.now(),
+                        success='error' not in result or not result.get('isError', False),
+                        error_message=None if 'error' not in result else str(result.get('error', 'Unknown error')),
+                        execution_time_ms=execution_time
+                    )
+                    
+                    # Add to conversation context
+                    self.tool_context_manager.add_tool_result(conversation_id, tool_result)
+                    
+                    # Format the result for display
+                    if 'content' in result:
+                        for content_item in result['content']:
+                            if 'text' in content_item:
+                                tool_results.append(f"\n**{tool_name} result:**\n{content_item['text']}")
+                    else:
+                        # Handle clean results (like from list_bp5)
+                        if isinstance(result, list):
+                            formatted_result = json.dumps(result, indent=2)
+                        elif isinstance(result, dict):
+                            formatted_result = json.dumps(result, indent=2)
+                        else:
+                            formatted_result = str(result)
+                        tool_results.append(f"\n**{tool_name} result:**\n{formatted_result}")
+                        
+            except Exception as e:
+                logger.error(f"Error executing agentic tool call {tool_name}: {e}")
+                # Create failed tool result
+                failed_result = ToolResult(
+                    tool_name=tool_name,
+                    arguments=raw_arguments,
+                    result={"error": str(e)},
+                    timestamp=datetime.now(),
+                    success=False,
+                    error_message=str(e)
+                )
+                self.tool_context_manager.add_tool_result(conversation_id, failed_result)
+                tool_results.append(f"\n**Error with {tool_name}:**\n{str(e)}")
+        
+        # Combine response with tool results
+        if tool_results:
+            return response_text + "\n" + "\n".join(tool_results)
+        else:
+            return response_text
     
     async def cancel(self, context: RequestContext, event_queue: EventQueue) -> None:
         """

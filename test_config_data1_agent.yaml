@@ -1,0 +1,37 @@
+# Data1.bp Specialized Agent Configuration
+default_provider: "ollama"
+
+agent:
+  name: "Data1.bp File Agent"
+  description: "Specialized agent for analyzing /home/jcernuda/micro_agent/adios/data/data1.bp"
+  version: "1.0.0"
+  persona: "data1_bp_agent"
+
+providers:
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "llama3.2:1b"
+    max_tokens: 2048
+    temperature: 0.1  # Very low temperature for precise, consistent responses
+    timeout: 180
+
+# MCP servers configuration
+mcp_servers:
+  adios2:
+    name: "adios2"
+    command: ["uv", "--directory", "adios", "run", "adios-mcp"]
+    cwd: "."
+    enabled: true
+
+server:
+  host: "localhost"
+  port: 8000
+  log_level: "info"
+  streaming: true
+
+client:
+  timeout: 180
+  prefer_streaming: true
+
+logging:
+  level: "info"

@@ -178,7 +178,8 @@ class ConfigLoader:
                         description=agent_data.get("description", "An intelligent agent powered by configurable LLM providers"),
                         version=agent_data.get("version", "0.2.0"),
                         persona=agent_data.get("persona"),
-                        system_prompt=agent_data.get("system_prompt")
+                        system_prompt=agent_data.get("system_prompt"),
+                        prompts=agent_data.get("prompts")
                     )
                 
                 # Parse provider configs

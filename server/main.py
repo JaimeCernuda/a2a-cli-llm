@@ -2,6 +2,7 @@
 
 import asyncio
 import logging
+import uuid
 from typing import Optional
 
 import asyncclick as click
@@ -15,7 +16,7 @@ from shared.core.agent import CLIAgentExecutor
 from shared.core.llm_agent import LLMAgentExecutor
 from shared.core.config import ServerConfig
 from shared.core.config_loader import ConfigLoader
-from shared.core.utils import setup_logging
+from shared.core.utils import setup_logging, setup_session_logging
 
 
 logger = logging.getLogger(__name__)
@@ -192,13 +193,27 @@ def create_server_app(config: ServerConfig, use_llm: bool = False, config_path: 
     "--config",
     help="Path to configuration file"
 )
+@click.option(
+    "--log",
+    default="file",
+    type=click.Choice(["console", "file"]),
+    help="Logging destination: console for terminal output, file for session-based files",
+    show_default=True
+)
+@click.option(
+    "--log-everything",
+    is_flag=True,
+    help="Enable detailed logging including prompts, tools, and full content (default: true for file mode, false for console mode)"
+)
 async def main(
     host: str, 
     port: int, 
     log_level: str, 
     reload: bool,
     llm: bool,
-    config: Optional[str]
+    config: Optional[str],
+    log: str,
+    log_everything: bool
 ) -> None:
     """
     Start the A2A CLI server.
@@ -219,8 +234,23 @@ async def main(
     - File analysis and processing
     - Configurable via config.yaml file
     """
-    # Set up logging
-    setup_logging(log_level)
+    # Generate session ID for this server instance
+    session_id = str(uuid.uuid4())[:8]
+    
+    # Determine log_everything default based on log destination if not explicitly set
+    # For file mode: default to True unless user explicitly uses --log-everything to force False
+    # For console mode: default to False unless user explicitly uses --log-everything to force True
+    if log == "file":
+        actual_log_everything = True  # Always True for file mode unless overridden
+    else:
+        actual_log_everything = log_everything  # Only True for console if flag used
+    
+    # Set up logging based on destination
+    if log == "file":
+        setup_session_logging(session_id, log_level, actual_log_everything)
+        # Note: Don't log this message as it will go to the log file and show up in console
+    else:
+        setup_logging(log_level)
     
     # Create configuration
     server_config = ServerConfig(
@@ -240,15 +270,27 @@ async def main(
             logger.info(f"Using configuration from: {config}")
         logger.info(f"Agent card available at: http://{host}:{port}/.well-known/agent.json")
         
-        # Configure uvicorn
-        uvicorn_config = uvicorn.Config(
-            app=app,
-            host=host,
-            port=port,
-            log_level=log_level,
-            reload=reload,
-            access_log=True
-        )
+        # Configure uvicorn - disable its logging when using file mode
+        if log == "file":
+            # For file mode, completely disable uvicorn's internal logging
+            uvicorn_config = uvicorn.Config(
+                app=app,
+                host=host,
+                port=port,
+                log_config=None,  # Disable uvicorn's default logging
+                reload=reload,
+                access_log=False
+            )
+        else:
+            # For console mode, use normal uvicorn logging
+            uvicorn_config = uvicorn.Config(
+                app=app,
+                host=host,
+                port=port,
+                log_level=log_level,
+                reload=reload,
+                access_log=True
+            )
         
         # Start server
         server = uvicorn.Server(uvicorn_config)

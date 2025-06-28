@@ -18,7 +18,8 @@ from .config_loader import A2AConfig, ConfigLoader
 from .persona_loader import PersonaLoader
 from .prompt_loader import PromptLoader
 from .tool_context import ToolContextManager, ToolResult
-from .utils import extract_text_from_message
+from .utils import extract_text_from_message, should_log_everything
+from .logging_utils import StructuredLogger
 
 
 logger = logging.getLogger(__name__)
@@ -55,6 +56,13 @@ class LLMAgentExecutor(AgentExecutor):
         
         # Load external prompts if configured
         self.prompts = self._load_prompts()
+        
+        # Store log_everything setting directly in the instance
+        self.log_everything = should_log_everything()
+        logger.info(f"LLM Agent log_everything setting: {self.log_everything}")
+        
+        # Initialize structured logger
+        self.structured_logger = StructuredLogger(__name__)
         
         logger.info(f"Initialized {self.name} with {self.provider_name} provider")
         
@@ -140,7 +148,7 @@ class LLMAgentExecutor(AgentExecutor):
         
         try:
             prompts = PromptLoader.load_prompts(self.config.agent.prompts)
-            logger.info(f"Loaded {len(prompts)} external prompts")
+            logger.info(f"Loaded {len(prompts)} external prompts: {list(prompts.keys())}")
             return prompts
         except Exception as e:
             logger.warning(f"Failed to load external prompts: {e}")
@@ -405,6 +413,10 @@ class LLMAgentExecutor(AgentExecutor):
             # Create or get conversation context
             conversation_id = context.context_id or str(uuid.uuid4())
             
+            # Log user query with structured logging if enabled
+            if self.log_everything:
+                self.structured_logger.log_user_query(user_input, conversation_id)
+            
             # Multi-turn cognitive processing loop
             final_response = await self._cognitive_processing_loop(user_input, conversation_id)
             
@@ -454,6 +466,16 @@ class LLMAgentExecutor(AgentExecutor):
             # Build tool-focused system prompt
             tool_focused_prompt = self._build_tool_focused_prompt(conversation_id)
             
+            # Log orchestrator to model communication if enabled
+            if self.log_everything:
+                self.structured_logger.log_orchestrator_to_model(
+                    phase="PHASE 1 - TOOL EXECUTION",
+                    iteration=iteration,
+                    prompt=current_prompt,
+                    system_prompt=tool_focused_prompt,
+                    tools=ollama_tools
+                )
+            
             # Generate response with tools (focused on execution, not explanation)
             llm_response = await provider.generate(
                 prompt=current_prompt,
@@ -462,6 +484,15 @@ class LLMAgentExecutor(AgentExecutor):
                 max_tokens=provider.config.get("max_tokens", 1024),  # Reduced for tool calls
                 temperature=0.01  # Very low for reliable tool execution
             )
+            
+            # Log model response if enabled
+            if self.log_everything:
+                tool_calls = llm_response.metadata.get("tool_calls", [])
+                self.structured_logger.log_model_to_orchestrator(
+                    phase="PHASE 1 - TOOL EXECUTION",
+                    response_length=len(llm_response.text),
+                    tool_calls=tool_calls
+                )
             
             # Handle tool calls and collect results
             response_text = await self._handle_agentic_tool_calls(llm_response, conversation_id)
@@ -722,12 +753,29 @@ Provide a direct, factual response using only the information present in the ana
             "You are a precise data reporter who provides factual answers based strictly on the provided analysis results. Do not speculate or add interpretations beyond what is explicitly shown in the data."
         )
         
+        # Log Phase 2 with structured logging if enabled
+        if self.log_everything:
+            self.structured_logger.log_orchestrator_to_model(
+                phase="PHASE 2 - RESPONSE SYNTHESIS",
+                iteration=1,
+                prompt=parser_prompt,
+                system_prompt=synthesis_system_prompt
+            )
+        
         synthesis_response = await provider.generate(
             prompt=parser_prompt,
             system_prompt=synthesis_system_prompt,
             max_tokens=provider.config.get("max_tokens", 1024),  # Reduced to encourage conciseness
             temperature=0.1  # Lower temperature for factual, precise responses
         )
+        
+        # Log synthesis completion if enabled
+        if self.log_everything:
+            self.structured_logger.log_synthesis_complete(
+                user_input=user_input,
+                final_response=synthesis_response.text,
+                tool_count=len(tool_results)
+            )
         
         logger.info(f"Generated synthesis response: {len(synthesis_response.text)} characters")
         return synthesis_response.text
@@ -870,8 +918,33 @@ Provide a direct, factual response using only the information present in the ana
                     result = await self.mcp_manager.call_tool(tool_name, enhanced_arguments)
                     execution_time = (datetime.now() - start_time).total_seconds() * 1000
                     
-                    # Pretty log tool execution result
-                    self._log_tool_execution_result(tool_name, result, execution_time)
+                    # Log tool execution with structured logging if enabled
+                    if self.log_everything:
+                        success = not (isinstance(result, dict) and result.get('isError', False))
+                        error_msg = None
+                        if not success and isinstance(result, dict):
+                            error_msg = result.get('error', 'Unknown error')
+                        
+                        # Format result preview
+                        if isinstance(result, dict) and 'content' in result:
+                            result_preview = ""
+                            for content_item in result['content']:
+                                if 'text' in content_item:
+                                    result_preview += content_item['text']
+                        else:
+                            result_preview = str(result)
+                        
+                        self.structured_logger.log_tool_call(
+                            tool_name=tool_name,
+                            arguments=enhanced_arguments,
+                            execution_time_ms=execution_time,
+                            success=success,
+                            result_preview=result_preview,
+                            error_msg=error_msg
+                        )
+                    else:
+                        # Fallback to old logging for console mode
+                        self._log_tool_execution_result(tool_name, result, execution_time)
                     
                     # Create tool result object
                     tool_result = ToolResult(

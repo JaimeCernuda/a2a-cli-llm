@@ -1,0 +1,2 @@
+[console_scripts]
+adios-mcp = adiosmcp.server:main

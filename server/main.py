@@ -12,9 +12,7 @@ from a2a.server.request_handlers.default_request_handler import DefaultRequestHa
 from a2a.server.tasks import InMemoryTaskStore
 from a2a.types import AgentCard, AgentCapabilities, AgentSkill
 
-from shared.core.agent import CLIAgentExecutor
 from shared.core.llm_agent import LLMAgentExecutor
-from shared.core.config import ServerConfig
 from shared.core.config_loader import ConfigLoader
 from shared.core.utils import setup_logging, setup_session_logging
 
@@ -22,60 +20,7 @@ from shared.core.utils import setup_logging, setup_session_logging
 logger = logging.getLogger(__name__)
 
 
-def create_agent_card(host: str, port: int) -> AgentCard:
-    """Create the agent card that describes this server's capabilities."""
-    return AgentCard(
-        name="A2A CLI Demo Agent",
-        description="A simple demonstration agent for the A2A CLI application",
-        url=f"http://{host}:{port}/",
-        version="0.1.0",
-        defaultInputModes=["text"],
-        defaultOutputModes=["text"],
-        capabilities=AgentCapabilities(
-            streaming=True,
-            pushNotifications=False
-        ),
-        skills=[
-            AgentSkill(
-                id="greeting",
-                name="Greeting",
-                description="Responds to greetings and casual conversation",
-                tags=["greeting", "conversation"],
-                examples=["hello", "hi", "hey there"]
-            ),
-            AgentSkill(
-                id="help",
-                name="Help",
-                description="Provides help and information about capabilities",
-                tags=["help", "info"],
-                examples=["help", "what can you do", "info"]
-            ),
-            AgentSkill(
-                id="echo",
-                name="Echo",
-                description="Echoes back text messages",
-                tags=["echo", "repeat"],
-                examples=["echo hello world", "repeat this message"]
-            ),
-            AgentSkill(
-                id="time",
-                name="Time/Date",
-                description="Provides current time and date information",
-                tags=["time", "date", "clock"],
-                examples=["what time is it", "current date", "time"]
-            ),
-            AgentSkill(
-                id="file_analysis",
-                name="File Analysis",
-                description="Basic file handling and acknowledgment",
-                tags=["file", "upload", "analysis"],
-                examples=["analyze this file", "process document"]
-            )
-        ]
-    )
-
-
-def create_llm_agent_card(host: str, port: int, config) -> AgentCard:
+def create_agent_card(host: str, port: int, config) -> AgentCard:
     """Create agent card for LLM-powered agent."""
     return AgentCard(
         name=config.agent.name,
@@ -128,16 +73,12 @@ def create_llm_agent_card(host: str, port: int, config) -> AgentCard:
     )
 
 
-def create_server_app(config: ServerConfig, use_llm: bool = False, config_path: Optional[str] = None) -> A2AStarletteApplication:
+def create_server_app(host: str, port: int, config_path: Optional[str] = None) -> A2AStarletteApplication:
     """Create and configure the A2A server application."""
-    # Load full configuration if using LLM
-    if use_llm:
-        full_config = ConfigLoader.load_config(config_path)
-        agent_card = create_llm_agent_card(config.host, config.port, full_config)
-        agent_executor = LLMAgentExecutor(full_config, config_path)
-    else:
-        agent_card = create_agent_card(config.host, config.port)
-        agent_executor = CLIAgentExecutor()
+    # Load configuration
+    full_config = ConfigLoader.load_config(config_path)
+    agent_card = create_agent_card(host, port, full_config)
+    agent_executor = LLMAgentExecutor(full_config, config_path)
     
     # Create task store
     task_store = InMemoryTaskStore()
@@ -185,11 +126,6 @@ def create_server_app(config: ServerConfig, use_llm: bool = False, config_path: 
     help="Enable auto-reload for development"
 )
 @click.option(
-    "--llm",
-    is_flag=True,
-    help="Use LLM-powered agent instead of rule-based agent"
-)
-@click.option(
     "--config",
     help="Path to configuration file"
 )
@@ -210,7 +146,6 @@ async def main(
     port: int, 
     log_level: str, 
     reload: bool,
-    llm: bool,
     config: Optional[str],
     log: str,
     log_everything: bool
@@ -218,20 +153,12 @@ async def main(
     """
     Start the A2A CLI server.
     
-    The server can run in two modes:
-    
-    Default mode (rule-based agent):
-    - Respond to greetings and basic conversation
-    - Provide help information
-    - Echo messages
-    - Handle file uploads
-    - Provide time/date information
-    
-    LLM mode (--llm flag):
+    LLM-powered agent features:
     - AI-powered conversations using configured LLM providers
     - Support for Gemini, Claude, and Ollama
     - Intelligent responses to any questions or tasks
     - File analysis and processing
+    - MCP server integration for tool calling
     - Configurable via config.yaml file
     """
     # Generate session ID for this server instance
@@ -252,21 +179,14 @@ async def main(
     else:
         setup_logging(log_level)
     
-    # Create configuration
-    server_config = ServerConfig(
-        host=host,
-        port=port,
-        log_level=log_level
-    )
-    
     # Create server application
     try:
-        server_app = create_server_app(server_config, use_llm=llm, config_path=config)
+        server_app = create_server_app(host, port, config_path=config)
         app = server_app.build()
         
         logger.info(f"Starting A2A CLI server on {host}:{port}")
-        logger.info(f"Mode: {'LLM-powered' if llm else 'Rule-based'} agent")
-        if llm and config:
+        logger.info(f"Mode: LLM-powered agent")
+        if config:
             logger.info(f"Using configuration from: {config}")
         logger.info(f"Agent card available at: http://{host}:{port}/.well-known/agent.json")
         

@@ -25,7 +25,21 @@ from a2a.types import (
     TaskQueryParams
 )
 
-from shared.core.config import ClientConfig
+# Simple client config
+class ClientConfig:
+    def __init__(self, agent_url: str, timeout: int = 30, max_retries: int = 3):
+        self.agent_url = agent_url
+        self.timeout = timeout
+        self.max_retries = max_retries
+    
+    @classmethod
+    def from_url(cls, agent_url: str) -> "ClientConfig":
+        import os
+        return cls(
+            agent_url=agent_url,
+            timeout=int(os.getenv("A2A_TIMEOUT", "30")),
+            max_retries=int(os.getenv("A2A_MAX_RETRIES", "3"))
+        )
 from shared.core.utils import (
     setup_logging, 
     create_text_message, 

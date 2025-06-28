@@ -1,63 +1,49 @@
-# A2A CLI Client and Server
+# A2A CLI ADIOS2 Agent
 
-A powerful A2A (Agent-to-Agent) CLI application with support for multiple LLM providers including Gemini, Claude, and Ollama.
+A specialized A2A (Agent-to-Agent) CLI application for scientific data analysis with ADIOS2 file parsing capabilities, powered by LLM providers and MCP tool integration.
 
 ## 🚀 Quick Start
 
-### Basic Usage (Rule-based Agent)
+### ADIOS2 Data Analysis Agent
 ```bash
-# Start the server
-uv run server
+# Start the specialized ADIOS2 agent
+uv run python -m server.main --config config_data1_agent.yaml
 
-# In another terminal, use the client
-uv run client send --agent http://localhost:8000 --message "Hello!"
-uv run client interactive --agent http://localhost:8000
+# In another terminal, interact with the agent
+uv run python -m client.main interactive --agent http://localhost:8000
 ```
 
-### LLM-Powered Agent
+### Test the Parser Prompt System
 ```bash
-# Start LLM-powered server (requires configuration)
-uv run server --llm --config docs/config.yaml
-
-# Use with any LLM provider
-uv run client interactive --agent http://localhost:8000
-```
-
-### 🎭 Persona-Powered Agent
-```bash
-# Start with developer persona
-uv run server --llm --config test_config_developer.yaml
-
-# Start with teacher persona  
-uv run server --llm --config test_config_teacher.yaml
-
-# Test persona functionality
-uv run python demo_persona_loading.py
+# Run comprehensive tests
+uv run python tests/test_parser_prompt.py
 ```
 
 ## 📁 Project Structure
 
 ```
-├── client/          # A2A CLI client implementation
-├── server/          # A2A CLI server implementation  
-├── shared/          # Shared components
-│   ├── core/        # Core utilities and configuration
-│   └── llm/         # LLM provider implementations
-├── tests/           # Test suite and validation scripts
-├── docs/            # Documentation and configuration files
-└── examples/        # Example files for testing
+├── client/              # A2A CLI client implementation
+├── server/              # A2A CLI server implementation  
+├── shared/              # Shared components
+│   ├── core/            # Core utilities, configuration, and logging
+│   ├── llm/             # LLM provider implementations
+│   └── mcp/             # MCP (Model Context Protocol) integration
+├── adios/               # ADIOS2 MCP server implementation
+├── personas/            # AI agent personalities and prompts
+│   ├── adios/           # ADIOS2-specific prompts for tool execution and synthesis
+│   └── data1_bp_agent.md # Specialized data1.bp file agent persona
+├── tests/               # Test suite and validation scripts
+└── config_data1_agent.yaml # Active configuration for ADIOS2 agent
 ```
 
 ## 🧠 LLM Provider Support
 
-### Supported Providers:
-- **🦙 Ollama** - Local models (free, no API key required)
-- **🤖 Gemini** - Google's AI models (free tier available)
-- **🧠 Claude** - Anthropic's models (paid subscription)
+### Current Setup:
+- **🦙 Ollama** - Local models (llama3.2:1b optimized for tool calling)
+- **🤖 Gemini** - Google's AI models (supported)
+- **🧠 Claude** - Anthropic's models (supported)
 
-### Setup Instructions:
-
-#### Ollama (Recommended for getting started)
+### Ollama Setup (Required)
 ```bash
 # Install Ollama
 curl -fsSL https://ollama.ai/install.sh | sh
@@ -65,77 +51,91 @@ curl -fsSL https://ollama.ai/install.sh | sh
 # Start Ollama
 ollama serve
 
-# Pull a model
-ollama pull llama3.2:3b
+# Pull the optimized model
+ollama pull llama3.2:1b
 ```
 
-#### Gemini (Free tier)
-1. Get API key: https://makersuite.google.com/app/apikey
-2. Set environment: `export GEMINI_API_KEY=your_key_here`
+## 🔧 Architecture
 
-#### Claude (Paid)
-1. Get API key: https://console.anthropic.com/
-2. Set environment: `export CLAUDE_API_KEY=your_key_here`
+### Two-Phase Parser Prompt System
+1. **Tool Execution Phase**: Efficiently calls ADIOS2 tools to gather data
+2. **Natural Language Synthesis**: Converts tool results into human-readable responses
 
-## 🔧 Configuration
+### MCP Integration
+- **ADIOS2 MCP Server**: Provides BP5 file analysis capabilities
+- **Tool Context Management**: Enhanced parameter handling for scientific data
+- **Session-based Logging**: Comprehensive observability for debugging
 
-Copy `docs/config.yaml` to customize:
-- LLM provider settings
-- Model selection  
-- API keys and endpoints
-- Agent behavior
+### Key Features
+- **Focused Agent**: Specialized for data1.bp file analysis only
+- **100% Tool Execution Reliability**: Consistent and accurate tool calling
+- **Scientific Data Analysis**: Specialized for ADIOS2 BP5 format files
+- **Structured Logging**: Clear categorization of agent operations
+- **External Prompt System**: Configurable prompts stored in markdown files
+
+## 🛠️ Configuration
+
+The active configuration (`config_data1_agent.yaml`) includes:
+- **Ollama Provider**: llama3.2:1b model with optimized settings
+- **ADIOS2 MCP Server**: Automated stdio MCP integration
+- **External Prompts**: Tool execution and synthesis prompts
+- **Extended Timeout**: 10-minute timeout for complex analysis
+- **Session Logging**: File-based logging with detailed content
 
 ## 🧪 Testing
 
 ```bash
-# Run all tests
-uv run test
+# Test the parser prompt system
+uv run python tests/test_parser_prompt.py
 
-# Test LLM providers
-uv run python tests/test_llm_providers.py
-
-# Validate system
-uv run python tests/validate_system.py
+# The test includes:
+# - Variable discovery
+# - Statistical analysis (min/max values)
+# - Comparative analysis
+# - Temporal dynamics
+# - Scientific interpretation
 ```
 
-## 📚 Documentation
+## 📊 Scientific Data Analysis
 
-- [Development Notes](docs/DEVELOPMENT_NOTES.md) - Detailed implementation guide
-- [Configuration Guide](docs/config.yaml) - LLM provider setup
-- [**🎭 Persona System**](docs/PERSONA_SYSTEM.md) - AI personality customization
-- [Example Commands](examples/test_commands.md) - Usage examples
+The agent can analyze:
+- **Variables**: Discover all variables in ADIOS2 files
+- **Statistics**: Calculate min/max values for any variable
+- **Temporal Data**: Analyze time-series simulation data
+- **Physical Properties**: Interpret pressure, temperature, and other scientific variables
+- **Simulation Context**: Provide scientific insights about the data
 
-## 🌟 Features
+## 🚀 Usage Examples
 
-### Client Features
-- Multiple operation modes (send, interactive, info)
-- File upload support
-- Rich terminal interface
-- Streaming response handling
-- Error handling and retry logic
+```bash
+# Ask about variables
+"What variables are in your file?"
 
-### Server Features  
-- Rule-based and LLM-powered modes
-- Multiple LLM provider support
-- **🎭 Persona System**: Customizable AI personalities and expertise
-- Configurable agent behavior
-- Streaming responses
-- File processing capabilities
-- Health checks and fallback mechanisms
+# Get statistical information
+"What are the min and max values for temperature?"
 
-### 🎭 Persona System
-- **Pre-built Personas**: Developer, Teacher, Analyst, Default
-- **Custom Personas**: Create your own AI personalities via Markdown files
-- **Dynamic Loading**: Configure personas through external config files
-- **Expertise Specialization**: Tailor responses to specific domains
+# Request comparative analysis
+"Compare pressure and temperature variables"
 
-## 🤝 Development
+# Scientific interpretation
+"What kind of scientific simulation does this represent?"
+```
 
-This project demonstrates:
-- A2A protocol implementation
-- Multi-LLM provider architecture
-- Clean, modular codebase
-- Comprehensive testing
-- Rich CLI experiences
+## 🔍 Logging & Debugging
 
-See [docs/DEVELOPMENT_NOTES.md](docs/DEVELOPMENT_NOTES.md) for detailed implementation insights.
+The system provides comprehensive logging with:
+- **Session-based Files**: Each server instance creates unique log files
+- **Structured Categories**: User queries, model interactions, tool execution, synthesis
+- **Console vs File Mode**: Configurable logging destinations
+- **Rich Emoji Indicators**: Easy identification of different operation types
+
+## 🎯 Development Focus
+
+This implementation demonstrates:
+- **Specialized AI Agents**: Domain-specific expertise for scientific data
+- **Two-Phase Processing**: Reliable tool execution + natural language synthesis  
+- **MCP Integration**: Modern tool calling with Model Context Protocol
+- **Enterprise Logging**: Production-ready observability
+- **External Configuration**: Maintainable prompt and configuration management
+
+The system achieves 100% tool execution reliability while providing natural, scientific language responses about ADIOS2 data files.

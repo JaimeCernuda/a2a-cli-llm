@@ -1,8 +1,0 @@
-This is a sample text file for testing A2A CLI file upload functionality.
-
-The file contains some basic text content that can be analyzed by the agent.
-
-Features demonstrated:
-- Text file handling
-- Multi-line content
-- Basic file upload via A2A protocol

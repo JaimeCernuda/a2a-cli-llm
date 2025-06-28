@@ -3,6 +3,7 @@
 import asyncio
 import logging
 import uuid
+import json
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
@@ -656,7 +657,7 @@ Focus only on tool execution, not explanations."""
         data_summary = self._build_data_summary(tool_results)
         
         # Create parser prompt for natural language synthesis
-        parser_prompt = f"""Based on the scientific data analysis results below, provide a clear, informative answer to the user's question.
+        parser_prompt = f"""Based on the scientific data analysis results below, provide a direct, factual answer to the user's question.
 
 ## USER QUESTION:
 {user_input}
@@ -665,23 +666,24 @@ Focus only on tool execution, not explanations."""
 {data_summary}
 
 ## RESPONSE REQUIREMENTS:
-1. Answer the user's question directly and clearly
-2. Use scientific terminology appropriately
-3. Highlight key findings and patterns
-4. Provide context about what the data represents
-5. Be specific with numbers and measurements when relevant
-6. Explain scientific significance where appropriate
+1. Answer ONLY what the user asked - do not speculate or add interpretations
+2. Use the exact data from the analysis results
+3. Be factual and precise with numbers and measurements
+4. Do NOT make assumptions about what kind of simulation this might be
+5. Do NOT suggest causes, mechanisms, or scientific explanations not present in the data
+6. If the data shows errors or missing values, acknowledge them honestly
+7. Keep responses concise and directly relevant to the question
 
-Provide a comprehensive, natural language response that synthesizes these findings into a clear answer."""
+Provide a direct, factual response using only the information present in the analysis results."""
         
         # Use provider for synthesis with higher temperature for natural language
         provider = await self._ensure_provider()
         
         synthesis_response = await provider.generate(
             prompt=parser_prompt,
-            system_prompt="You are a scientific data analysis expert who excels at interpreting ADIOS2 simulation data and explaining findings in clear, accessible language.",
-            max_tokens=provider.config.get("max_tokens", 2048),
-            temperature=0.3  # Higher temperature for natural, varied language
+            system_prompt="You are a precise data reporter who provides factual answers based strictly on the provided analysis results. Do not speculate or add interpretations beyond what is explicitly shown in the data.",
+            max_tokens=provider.config.get("max_tokens", 1024),  # Reduced to encourage conciseness
+            temperature=0.1  # Lower temperature for factual, precise responses
         )
         
         logger.info(f"Generated synthesis response: {len(synthesis_response.text)} characters")
@@ -700,6 +702,81 @@ Provide a comprehensive, natural language response that synthesizes these findin
             summary_parts.append("")  # Add spacing
         
         return "\n".join(summary_parts)
+    
+    def _log_tool_execution_start(self, tool_name: str, arguments: Dict[str, Any]) -> None:
+        """Log tool execution start with pretty formatting."""
+        args_str = json.dumps(arguments, indent=2) if arguments else "{}"
+        logger.info(f"🔨 Executing tool: {tool_name}")
+        logger.info(f"📋 Arguments:\n{args_str}")
+    
+    def _log_tool_execution_result(self, tool_name: str, result: Any, execution_time_ms: float) -> None:
+        """Log tool execution result with pretty formatting."""
+        # Determine success/failure
+        success = not (isinstance(result, dict) and result.get('isError', False))
+        status_emoji = "✅" if success else "❌"
+        
+        # Format result for logging
+        if isinstance(result, dict):
+            if 'content' in result:
+                # MCP format result
+                content_text = ""
+                for content_item in result['content']:
+                    if 'text' in content_item:
+                        content_text += content_item['text'][:200] + ("..." if len(content_item['text']) > 200 else "")
+                result_preview = content_text
+            elif result.get('isError', False):
+                # Error result
+                error_msg = result.get('error', 'Unknown error')
+                result_preview = f"ERROR: {error_msg}"
+            else:
+                # Clean result (like from list_bp5)
+                result_str = json.dumps(result, indent=2)
+                result_preview = result_str[:200] + ("..." if len(result_str) > 200 else "")
+        else:
+            result_preview = str(result)[:200] + ("..." if len(str(result)) > 200 else "")
+        
+        logger.info(f"{status_emoji} Tool {tool_name} completed in {execution_time_ms:.1f}ms")
+        logger.info(f"📤 Result preview: {result_preview}")
+        
+        # Log get_min_max failures specifically since they're problematic
+        if tool_name == "get_min_max" and not success:
+            logger.warning(f"🚨 get_min_max tool failed - this is a known issue. Arguments were: {json.dumps(result.get('_meta', {}), indent=2) if isinstance(result, dict) else 'N/A'}")
+    
+    def _clean_tool_arguments(self, arguments: Dict[str, Any]) -> Dict[str, Any]:
+        """Clean and type-convert tool arguments to handle LLM string conversions."""
+        cleaned = {}
+        
+        for key, value in arguments.items():
+            if isinstance(value, str):
+                # Handle common string-to-type conversions
+                if value == "None" or value == "null":
+                    # Convert string "None" to actual None
+                    cleaned[key] = None
+                elif value.isdigit():
+                    # Convert numeric strings to integers
+                    cleaned[key] = int(value)
+                elif self._is_float_string(value):
+                    # Convert float strings to floats
+                    cleaned[key] = float(value)
+                elif value.lower() in ('true', 'false'):
+                    # Convert boolean strings to booleans
+                    cleaned[key] = value.lower() == 'true'
+                else:
+                    # Keep as string
+                    cleaned[key] = value
+            else:
+                # Keep non-string values as-is
+                cleaned[key] = value
+        
+        return cleaned
+    
+    def _is_float_string(self, value: str) -> bool:
+        """Check if a string represents a valid float."""
+        try:
+            float(value)
+            return '.' in value  # Only consider it float if it has a decimal point
+        except ValueError:
+            return False
     
     async def _handle_agentic_tool_calls(self, llm_response: LLMResponse, conversation_id: str) -> str:
         """Handle tool calls with agentic intelligence and conversation context."""
@@ -720,25 +797,38 @@ Provide a comprehensive, natural language response that synthesizes these findin
                 raw_arguments = function.get("arguments", {})
                 
                 if tool_name:
+                    # Clean and type-convert arguments first
+                    cleaned_arguments = self._clean_tool_arguments(raw_arguments)
+                    
+                    # Log argument cleaning
+                    if cleaned_arguments != raw_arguments:
+                        logger.info(f"🧹 Cleaned arguments for {tool_name}: {raw_arguments} -> {cleaned_arguments}")
+                    
                     # Enhance arguments using conversation context
                     enhanced_arguments = self.tool_context_manager.suggest_parameters(
-                        tool_name, conversation_id, raw_arguments
+                        tool_name, conversation_id, cleaned_arguments
                     )
                     
                     # Log parameter enhancement
-                    if enhanced_arguments != raw_arguments:
-                        logger.info(f"Enhanced parameters for {tool_name}: {raw_arguments} -> {enhanced_arguments}")
+                    if enhanced_arguments != cleaned_arguments:
+                        logger.info(f"🔧 Enhanced parameters for {tool_name}: {cleaned_arguments} -> {enhanced_arguments}")
+                    
+                    # Pretty log tool execution start
+                    self._log_tool_execution_start(tool_name, enhanced_arguments)
                     
                     # Check for missing prerequisites
                     missing_prereqs = self.tool_context_manager.should_suggest_prerequisites(tool_name, conversation_id)
                     if missing_prereqs:
-                        logger.info(f"Tool {tool_name} has missing prerequisites: {missing_prereqs}")
+                        logger.info(f"⚠️  Tool {tool_name} has missing prerequisites: {missing_prereqs}")
                         # For now, continue with the call - the LLM should handle prerequisites
                     
                     # Execute the tool call
                     start_time = datetime.now()
                     result = await self.mcp_manager.call_tool(tool_name, enhanced_arguments)
                     execution_time = (datetime.now() - start_time).total_seconds() * 1000
+                    
+                    # Pretty log tool execution result
+                    self._log_tool_execution_result(tool_name, result, execution_time)
                     
                     # Create tool result object
                     tool_result = ToolResult(

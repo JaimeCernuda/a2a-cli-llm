@@ -11,9 +11,9 @@ providers:
   ollama:
     base_url: "http://localhost:11434"
     model: "llama3.2:1b"
-    max_tokens: 2048
-    temperature: 0.1  # Very low temperature for precise, consistent responses
-    timeout: 180
+    max_tokens: 4096  # Increased for multi-turn reasoning
+    temperature: 0.05  # Very low temperature for structured cognitive processing
+    timeout: 600  # Extended timeout for parser prompt synthesis (10 minutes)
 
 # MCP servers configuration
 mcp_servers:

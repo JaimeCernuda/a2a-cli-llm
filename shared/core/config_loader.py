@@ -20,6 +20,7 @@ class AgentConfig:
     version: str = "0.2.0"
     persona: Optional[str] = None
     system_prompt: Optional[str] = None
+    prompts: Optional[Dict[str, str]] = None
 
 
 @dataclass

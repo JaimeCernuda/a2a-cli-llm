@@ -16,6 +16,7 @@ from shared.llm import LLMProviderFactory, LLMProvider, LLMError, LLMResponse
 from shared.mcp import MCPManager
 from .config_loader import A2AConfig, ConfigLoader
 from .persona_loader import PersonaLoader
+from .prompt_loader import PromptLoader
 from .tool_context import ToolContextManager, ToolResult
 from .utils import extract_text_from_message
 
@@ -51,6 +52,9 @@ class LLMAgentExecutor(AgentExecutor):
         
         # Load persona if specified
         self.system_prompt = self._load_system_prompt()
+        
+        # Load external prompts if configured
+        self.prompts = self._load_prompts()
         
         logger.info(f"Initialized {self.name} with {self.provider_name} provider")
         
@@ -127,6 +131,20 @@ class LLMAgentExecutor(AgentExecutor):
         
         # Ultimate fallback
         return "You are a helpful AI assistant."
+    
+    def _load_prompts(self) -> Dict[str, str]:
+        """Load external prompt files if configured."""
+        if not self.config.agent.prompts:
+            logger.info("No external prompts configured")
+            return {}
+        
+        try:
+            prompts = PromptLoader.load_prompts(self.config.agent.prompts)
+            logger.info(f"Loaded {len(prompts)} external prompts")
+            return prompts
+        except Exception as e:
+            logger.warning(f"Failed to load external prompts: {e}")
+            return {}
     
     async def _initialize_mcp_servers(self) -> None:
         """Initialize MCP servers from configuration."""
@@ -546,7 +564,17 @@ Continue your cognitive processing. If you have completed all necessary tasks, p
         # Get conversation context
         context_summary = self.tool_context_manager.get_context_for_llm(conversation_id)
         
-        tool_focused_prompt = f"""You are the Data1.bp File Agent specialized in analyzing /home/jcernuda/micro_agent/adios/data/data1.bp.
+        # Use external prompt if available, otherwise fallback to hardcoded
+        if "tool_execution" in self.prompts:
+            base_prompt = self.prompts["tool_execution"]
+            # Add conversation context if available
+            if context_summary:
+                tool_focused_prompt = f"{base_prompt}\n\n## CONVERSATION CONTEXT:\n{context_summary}"
+            else:
+                tool_focused_prompt = base_prompt
+        else:
+            # Fallback to hardcoded prompt
+            tool_focused_prompt = f"""You are the Data1.bp File Agent specialized in analyzing /home/jcernuda/micro_agent/adios/data/data1.bp.
 
 ## PRIMARY DIRECTIVE:
 Execute tools efficiently to gather data. Do NOT provide explanations or natural language responses.
@@ -657,7 +685,16 @@ Focus only on tool execution, not explanations."""
         data_summary = self._build_data_summary(tool_results)
         
         # Create parser prompt for natural language synthesis
-        parser_prompt = f"""Based on the scientific data analysis results below, provide a direct, factual answer to the user's question.
+        if "parser_synthesis" in self.prompts:
+            # Use external prompt with variable substitution
+            parser_prompt = PromptLoader.format_prompt(
+                self.prompts["parser_synthesis"],
+                user_input=user_input,
+                data_summary=data_summary
+            )
+        else:
+            # Fallback to hardcoded prompt
+            parser_prompt = f"""Based on the scientific data analysis results below, provide a direct, factual answer to the user's question.
 
 ## USER QUESTION:
 {user_input}
@@ -679,9 +716,15 @@ Provide a direct, factual response using only the information present in the ana
         # Use provider for synthesis with higher temperature for natural language
         provider = await self._ensure_provider()
         
+        # Get system prompt for synthesis
+        synthesis_system_prompt = self.prompts.get(
+            "synthesis_system", 
+            "You are a precise data reporter who provides factual answers based strictly on the provided analysis results. Do not speculate or add interpretations beyond what is explicitly shown in the data."
+        )
+        
         synthesis_response = await provider.generate(
             prompt=parser_prompt,
-            system_prompt="You are a precise data reporter who provides factual answers based strictly on the provided analysis results. Do not speculate or add interpretations beyond what is explicitly shown in the data.",
+            system_prompt=synthesis_system_prompt,
             max_tokens=provider.config.get("max_tokens", 1024),  # Reduced to encourage conciseness
             temperature=0.1  # Lower temperature for factual, precise responses
         )

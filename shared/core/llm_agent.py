@@ -372,7 +372,7 @@ class LLMAgentExecutor(AgentExecutor):
     
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         """
-        Execute the agent logic using LLM providers with agentic tool chaining.
+        Execute the agent logic with enhanced cognitive processing and multi-turn reasoning.
         
         Args:
             context: Request context containing message and metadata
@@ -381,46 +381,16 @@ class LLMAgentExecutor(AgentExecutor):
         try:
             # Get user input
             user_input = context.get_user_input()
-            logger.info(f"Processing agentic LLM request: {user_input[:100]}...")
+            logger.info(f"Processing cognitive LLM request: {user_input[:100]}...")
             
             # Create or get conversation context
             conversation_id = context.context_id or str(uuid.uuid4())
             
-            # Prepare context from the full message
-            message_context = self._extract_message_context(context)
+            # Multi-turn cognitive processing loop
+            final_response = await self._cognitive_processing_loop(user_input, conversation_id)
             
-            # Ensure provider is ready
-            provider = await self._ensure_provider()
-            
-            # Get available tools in Ollama format
-            ollama_tools = self._get_ollama_tools_schema()
-            
-            # Enhanced system prompt with conversation context
-            enhanced_system_prompt = self._build_enhanced_system_prompt(conversation_id, user_input)
-            
-            # Generate response using LLM with tools and conversation context
-            llm_response = await provider.generate(
-                prompt=user_input,
-                system_prompt=enhanced_system_prompt,
-                tools=ollama_tools if ollama_tools else None,
-                max_tokens=provider.config.get("max_tokens", 2048),
-                temperature=provider.config.get("temperature", 0.7)
-            )
-            
-            # Handle native tool calls with agentic behavior
-            response_text = await self._handle_agentic_tool_calls(llm_response, conversation_id)
-            
-            # Add provider info to response if requested
-            if "model" in user_input.lower() or "provider" in user_input.lower():
-                model_info = provider.get_model_info()
-                response_text += f"\n\n_Using {model_info['provider']} ({model_info['model']})_"
-            
-            # Send response
-            await event_queue.enqueue_event(new_agent_text_message(response_text))
-            
-            # Log usage info if available
-            if llm_response.usage:
-                logger.info(f"LLM usage: {llm_response.usage}")
+            # Send final synthesized response
+            await event_queue.enqueue_event(new_agent_text_message(final_response))
             
         except LLMError as e:
             logger.error(f"LLM error: {e}")
@@ -438,6 +408,106 @@ class LLMAgentExecutor(AgentExecutor):
             logger.error(f"Unexpected error in LLM agent: {e}")
             error_message = f"I encountered an unexpected error: {str(e)}"
             await event_queue.enqueue_event(new_agent_text_message(error_message))
+    
+    async def _cognitive_processing_loop(self, user_input: str, conversation_id: str) -> str:
+        """
+        Multi-turn cognitive processing loop with parser prompt for final synthesis.
+        Uses small model for tool execution, then parser prompt for natural language response.
+        """
+        max_iterations = 3  # Reduced iterations since we're using parser approach
+        iteration = 0
+        current_prompt = user_input
+        all_tool_results = []
+        
+        logger.info(f"Starting cognitive processing with parser approach for: {user_input[:50]}...")
+        
+        # Phase 1: Tool execution with focused prompts
+        while iteration < max_iterations:
+            iteration += 1
+            logger.info(f"Tool execution iteration {iteration}")
+            
+            # Ensure provider is ready
+            provider = await self._ensure_provider()
+            
+            # Get available tools
+            ollama_tools = self._get_ollama_tools_schema()
+            
+            # Build tool-focused system prompt
+            tool_focused_prompt = self._build_tool_focused_prompt(conversation_id)
+            
+            # Generate response with tools (focused on execution, not explanation)
+            llm_response = await provider.generate(
+                prompt=current_prompt,
+                system_prompt=tool_focused_prompt,
+                tools=ollama_tools if ollama_tools else None,
+                max_tokens=provider.config.get("max_tokens", 1024),  # Reduced for tool calls
+                temperature=0.01  # Very low for reliable tool execution
+            )
+            
+            # Handle tool calls and collect results
+            response_text = await self._handle_agentic_tool_calls(llm_response, conversation_id)
+            
+            # Extract and store tool results
+            iteration_results = self._extract_tool_results(response_text)
+            all_tool_results.extend(iteration_results)
+            
+            logger.info(f"Iteration {iteration}: executed {len(iteration_results)} tools")
+            
+            # Check if we have sufficient data to answer the question
+            if self._has_sufficient_data(user_input, all_tool_results):
+                logger.info("Sufficient data collected - proceeding to synthesis")
+                break
+            
+            # Prepare next iteration if more tools needed
+            if iteration < max_iterations:
+                current_prompt = self._prepare_tool_continuation(response_text, user_input)
+        
+        # Phase 2: Parser prompt for natural language synthesis
+        logger.info("Starting parser prompt synthesis")
+        final_response = await self._synthesize_natural_language_response(
+            user_input, all_tool_results, conversation_id
+        )
+        
+        return final_response
+    
+    def _is_analysis_complete(self, response_text: str) -> bool:
+        """Check if the response contains the ANALYSIS_COMPLETE token."""
+        return "ANALYSIS_COMPLETE:" in response_text
+    
+    def _extract_final_answer(self, response_text: str) -> str:
+        """Extract the final natural language answer after ANALYSIS_COMPLETE."""
+        if "ANALYSIS_COMPLETE:" in response_text:
+            parts = response_text.split("ANALYSIS_COMPLETE:")
+            if len(parts) > 1:
+                # Return the content after ANALYSIS_COMPLETE:
+                final_answer = parts[-1].strip()
+                logger.info(f"Extracted final answer: {final_answer[:100]}...")
+                return final_answer
+        
+        # Fallback: return full response if extraction fails
+        return response_text
+    
+    def _needs_continued_processing(self, response_text: str) -> bool:
+        """Check if the response indicates more processing is needed."""
+        continuation_indicators = [
+            "TASK_DECOMPOSITION:",
+            "EXECUTING_TASK:",
+            "COMPLETION_CHECK:",
+            "❌"  # Failed completion check
+        ]
+        return any(indicator in response_text for indicator in continuation_indicators)
+    
+    def _prepare_continuation_prompt(self, response_text: str, original_question: str) -> str:
+        """Prepare the prompt for the next iteration of cognitive processing."""
+        # Create a prompt that includes the previous work and asks for continuation
+        continuation_prompt = f"""Previous analysis progress:
+{response_text}
+
+Original question: {original_question}
+
+Continue your cognitive processing. If you have completed all necessary tasks, provide your ANALYSIS_COMPLETE: response with the final natural language answer."""
+        
+        return continuation_prompt
     
     def _build_enhanced_system_prompt(self, conversation_id: str, user_input: str) -> str:
         """Build enhanced system prompt with conversation context and tool guidance."""
@@ -469,6 +539,167 @@ class LLMAgentExecutor(AgentExecutor):
 """
         
         return enhanced_prompt
+    
+    def _build_tool_focused_prompt(self, conversation_id: str) -> str:
+        """Build a tool-focused system prompt for reliable tool execution."""
+        # Get conversation context
+        context_summary = self.tool_context_manager.get_context_for_llm(conversation_id)
+        
+        tool_focused_prompt = f"""You are the Data1.bp File Agent specialized in analyzing /home/jcernuda/micro_agent/adios/data/data1.bp.
+
+## PRIMARY DIRECTIVE:
+Execute tools efficiently to gather data. Do NOT provide explanations or natural language responses.
+Your only job is to call the appropriate tools with correct parameters.
+
+## FILE PATH:
+Always use: /home/jcernuda/micro_agent/adios/data/data1.bp
+
+## TOOL EXECUTION RULES:
+1. Call tools with minimal response text
+2. Use exact file paths from previous tool results
+3. Don't explain what you're doing - just execute tools
+4. Don't provide analysis or conclusions - just gather data
+
+{f"## CONVERSATION CONTEXT:\\n{context_summary}" if context_summary else ""}
+
+## AVAILABLE TOOLS:
+- inspect_variables: Get variable metadata
+- read_bp5: Read all data from file
+- get_min_max: Get min/max values for specific variables
+- inspect_attributes: Get file attributes
+- read_variable_at_step: Read specific variable at specific step
+- add_variables: Add two variables together
+
+Execute the necessary tools to answer the user's question, then stop."""
+        
+        return tool_focused_prompt
+    
+    def _extract_tool_results(self, response_text: str) -> List[Dict[str, Any]]:
+        """Extract tool results from the response text."""
+        tool_results = []
+        lines = response_text.split('\n')
+        
+        current_tool = None
+        current_result = []
+        
+        for line in lines:
+            if line.startswith('**') and ' result:**' in line:
+                # Save previous tool result if any
+                if current_tool and current_result:
+                    tool_results.append({
+                        'tool_name': current_tool,
+                        'result': '\n'.join(current_result).strip()
+                    })
+                
+                # Start new tool result
+                current_tool = line.replace('**', '').replace(' result:', '').strip()
+                current_result = []
+            elif current_tool:
+                # Accumulate result lines
+                current_result.append(line)
+        
+        # Save last tool result
+        if current_tool and current_result:
+            tool_results.append({
+                'tool_name': current_tool,
+                'result': '\n'.join(current_result).strip()
+            })
+        
+        return tool_results
+    
+    def _has_sufficient_data(self, user_input: str, tool_results: List[Dict[str, Any]]) -> bool:
+        """Check if we have sufficient data to answer the user's question."""
+        if not tool_results:
+            return False
+        
+        # Basic heuristics for common question patterns
+        user_lower = user_input.lower()
+        
+        # For variable listing questions
+        if 'variables' in user_lower and 'what' in user_lower:
+            return any('inspect_variables' in result['tool_name'] for result in tool_results)
+        
+        # For min/max questions
+        if any(word in user_lower for word in ['min', 'max', 'minimum', 'maximum']):
+            return any('get_min_max' in result['tool_name'] or 'inspect_variables' in result['tool_name'] 
+                      for result in tool_results)
+        
+        # For comparison questions
+        if any(word in user_lower for word in ['compare', 'comparison', 'vs', 'versus']):
+            return len(tool_results) >= 2  # Need multiple data points
+        
+        # For temporal/time analysis
+        if any(word in user_lower for word in ['time', 'temporal', 'dynamics', 'changes']):
+            return any('read_bp5' in result['tool_name'] or 'physical_time' in result['result'] 
+                      for result in tool_results)
+        
+        # For general analysis questions
+        if any(word in user_lower for word in ['simulation', 'analysis', 'represents', 'findings']):
+            return len(tool_results) >= 1 and any(len(result['result']) > 100 for result in tool_results)
+        
+        # Default: if we have any substantial data
+        return len(tool_results) >= 1
+    
+    def _prepare_tool_continuation(self, response_text: str, original_question: str) -> str:
+        """Prepare prompt for next tool execution iteration."""
+        return f"""Continue gathering data for: {original_question}
+
+Previous tools executed, now execute additional tools if needed to fully answer the question.
+Focus only on tool execution, not explanations."""
+    
+    async def _synthesize_natural_language_response(self, user_input: str, tool_results: List[Dict[str, Any]], conversation_id: str) -> str:
+        """Use parser prompt to synthesize natural language response from tool results."""
+        if not tool_results:
+            return "I wasn't able to gather the necessary data to answer your question."
+        
+        # Build comprehensive data summary
+        data_summary = self._build_data_summary(tool_results)
+        
+        # Create parser prompt for natural language synthesis
+        parser_prompt = f"""Based on the scientific data analysis results below, provide a clear, informative answer to the user's question.
+
+## USER QUESTION:
+{user_input}
+
+## ANALYSIS RESULTS:
+{data_summary}
+
+## RESPONSE REQUIREMENTS:
+1. Answer the user's question directly and clearly
+2. Use scientific terminology appropriately
+3. Highlight key findings and patterns
+4. Provide context about what the data represents
+5. Be specific with numbers and measurements when relevant
+6. Explain scientific significance where appropriate
+
+Provide a comprehensive, natural language response that synthesizes these findings into a clear answer."""
+        
+        # Use provider for synthesis with higher temperature for natural language
+        provider = await self._ensure_provider()
+        
+        synthesis_response = await provider.generate(
+            prompt=parser_prompt,
+            system_prompt="You are a scientific data analysis expert who excels at interpreting ADIOS2 simulation data and explaining findings in clear, accessible language.",
+            max_tokens=provider.config.get("max_tokens", 2048),
+            temperature=0.3  # Higher temperature for natural, varied language
+        )
+        
+        logger.info(f"Generated synthesis response: {len(synthesis_response.text)} characters")
+        return synthesis_response.text
+    
+    def _build_data_summary(self, tool_results: List[Dict[str, Any]]) -> str:
+        """Build a comprehensive summary of all tool results."""
+        summary_parts = []
+        
+        for i, result in enumerate(tool_results, 1):
+            tool_name = result['tool_name']
+            result_data = result['result']
+            
+            summary_parts.append(f"### Tool {i}: {tool_name}")
+            summary_parts.append(result_data)
+            summary_parts.append("")  # Add spacing
+        
+        return "\n".join(summary_parts)
     
     async def _handle_agentic_tool_calls(self, llm_response: LLMResponse, conversation_id: str) -> str:
         """Handle tool calls with agentic intelligence and conversation context."""

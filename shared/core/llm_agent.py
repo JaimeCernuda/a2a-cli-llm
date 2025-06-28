@@ -15,7 +15,6 @@ from a2a.utils import new_agent_text_message
 from shared.llm import LLMProviderFactory, LLMProvider, LLMError, LLMResponse
 from shared.mcp import MCPManager
 from .config_loader import A2AConfig, ConfigLoader
-from .persona_loader import PersonaLoader
 from .prompt_loader import PromptLoader
 from .tool_context import ToolContextManager, ToolResult
 from .utils import extract_text_from_message, should_log_everything
@@ -122,23 +121,13 @@ class LLMAgentExecutor(AgentExecutor):
         raise LLMError("All configured LLM providers failed", "all")
     
     def _load_system_prompt(self) -> str:
-        """Load system prompt from persona or config."""
-        # If a persona is specified, load it
-        if self.config.agent.persona:
-            try:
-                persona_prompt = PersonaLoader.load_persona(self.config.agent.persona)
-                logger.info(f"Loaded persona: {self.config.agent.persona}")
-                return persona_prompt
-            except (FileNotFoundError, IOError) as e:
-                logger.warning(f"Failed to load persona '{self.config.agent.persona}': {e}")
-                logger.info("Falling back to system_prompt from config")
-        
-        # Fall back to system_prompt from config
+        """Load system prompt from config."""
+        # Use system_prompt from config if available
         if self.config.agent.system_prompt:
             return self.config.agent.system_prompt
         
         # Ultimate fallback
-        return "You are a helpful AI assistant."
+        return "You are a helpful AI assistant specialized in ADIOS2 data analysis."
     
     def _load_prompts(self) -> Dict[str, str]:
         """Load external prompt files if configured."""

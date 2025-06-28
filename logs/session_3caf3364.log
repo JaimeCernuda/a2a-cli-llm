@@ -1,0 +1,22 @@
+2025-06-28 03:09:27 - shared.core.config_loader - INFO - Loaded configuration from config_data1_agent.yaml
+2025-06-28 03:09:27 - shared.core.llm_agent - INFO - Loaded persona: data1_bp_agent
+2025-06-28 03:09:27 - shared.core.prompt_loader - INFO - Loaded prompt 'tool_execution' from: personas/adios/adios2_tool_execution.md
+2025-06-28 03:09:27 - shared.core.prompt_loader - INFO - Loaded prompt 'parser_synthesis' from: personas/adios/adios2_parser_synthesis.md
+2025-06-28 03:09:27 - shared.core.prompt_loader - INFO - Loaded prompt 'synthesis_system' from: personas/adios/adios2_synthesis_system.md
+2025-06-28 03:09:27 - shared.core.llm_agent - INFO - Loaded 3 external prompts: ['tool_execution', 'parser_synthesis', 'synthesis_system']
+2025-06-28 03:09:27 - shared.core.llm_agent - INFO - LLM Agent log_everything setting: True
+2025-06-28 03:09:27 - shared.core.llm_agent - INFO - Initialized Data1.bp File Agent with ollama provider
+2025-06-28 03:09:27 - __main__ - INFO - Created A2A server with agent: Data1.bp File Agent
+2025-06-28 03:09:27 - __main__ - INFO - Starting A2A CLI server on localhost:8000
+2025-06-28 03:09:27 - __main__ - INFO - Mode: LLM-powered agent
+2025-06-28 03:09:27 - __main__ - INFO - Using configuration from: config_data1_agent.yaml
+2025-06-28 03:09:27 - __main__ - INFO - Agent card available at: http://localhost:8000/.well-known/agent.json
+2025-06-28 03:09:27 - uvicorn.error - INFO - Started server process [176425]
+2025-06-28 03:09:27 - uvicorn.error - INFO - Waiting for application startup.
+2025-06-28 03:09:27 - shared.core.llm_agent - INFO - Initializing 1 MCP servers...
+2025-06-28 03:09:27 - shared.mcp.client - INFO - Starting MCP server: uv --directory adios run adios-mcp
+2025-06-28 03:09:28 - shared.mcp.client - INFO - Connected to MCP server with 7 tools
+2025-06-28 03:09:28 - shared.mcp.manager - INFO - Added MCP server 'adios2' with 7 tools
+2025-06-28 03:09:28 - shared.core.llm_agent - INFO - ✅ MCP server 'adios2' connected with 7 tools
+2025-06-28 03:09:28 - uvicorn.error - INFO - Application startup complete.
+2025-06-28 03:09:28 - uvicorn.error - INFO - Uvicorn running on http://localhost:8000 (Press CTRL+C to quit)

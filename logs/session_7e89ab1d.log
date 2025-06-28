@@ -4612,3 +4612,6059 @@ variable_name
 }
 2025-06-28 02:41:57 - shared.core.llm_agent - INFO - ⚠️  Tool add_variables has missing prerequisites: ['list_bp5']
 2025-06-28 02:41:57 - shared.mcp.client - INFO - Calling MCP tool: add_variables with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': '', 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: No response from MCP server
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool add_variables: No response from MCP server
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call add_variables: No response from MCP server
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for add_variables to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: inspect_attributes
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "variable_name": ""
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool inspect_attributes has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: inspect_attributes with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'variable_name': ''}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for inspect_attributes to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: read_bp5
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool read_bp5 has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: read_bp5 with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for read_bp5 to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🧹 Cleaned arguments for get_min_max: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step': '10', 'variable_name': 'density'} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step': 10, 'variable_name': 'density'}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: get_min_max
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "step": 10,
+  "variable_name": "density"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool get_min_max has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: get_min_max with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step': 10, 'variable_name': 'density'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool get_min_max: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call get_min_max: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for get_min_max to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: read_bp5
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool read_bp5 has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: read_bp5 with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for read_bp5 to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: inspect_attributes
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "variable_name": ""
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool inspect_attributes has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: inspect_attributes with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'variable_name': ''}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for inspect_attributes to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🧹 Cleaned arguments for read_variable_at_step: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': '10'} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10}
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Focused agent: Suggested variable content for read_variable_at_step
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔧 Enhanced parameters for read_variable_at_step: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10, 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: read_variable_at_step
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "target_step": 10,
+  "variable_name": "content"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool read_variable_at_step has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: read_variable_at_step with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10, 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool read_variable_at_step: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call read_variable_at_step: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for read_variable_at_step to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🧹 Cleaned arguments for add_variables: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': '0', 'step2': '0', 'var1': '', 'var2': ''} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': ''}
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Focused agent: Suggested variable content for add_variables
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔧 Enhanced parameters for add_variables: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': ''} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': '', 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: add_variables
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "step1": 0,
+  "step2": 0,
+  "var1": "",
+  "var2": "",
+  "variable_name": "content"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool add_variables has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: add_variables with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': '', 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool add_variables: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call add_variables: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for add_variables to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: inspect_attributes
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "variable_name": ""
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool inspect_attributes has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: inspect_attributes with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'variable_name': ''}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for inspect_attributes to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: read_bp5
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool read_bp5 has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: read_bp5 with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for read_bp5 to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🧹 Cleaned arguments for get_min_max: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step': '10', 'variable_name': 'density'} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step': 10, 'variable_name': 'density'}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: get_min_max
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "step": 10,
+  "variable_name": "density"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool get_min_max has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: get_min_max with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step': 10, 'variable_name': 'density'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool get_min_max: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call get_min_max: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for get_min_max to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: read_bp5
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool read_bp5 has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: read_bp5 with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for read_bp5 to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: inspect_attributes
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "variable_name": ""
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool inspect_attributes has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: inspect_attributes with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'variable_name': ''}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for inspect_attributes to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🧹 Cleaned arguments for read_variable_at_step: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': '10'} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10}
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Focused agent: Suggested variable content for read_variable_at_step
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔧 Enhanced parameters for read_variable_at_step: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10, 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: read_variable_at_step
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "target_step": 10,
+  "variable_name": "content"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool read_variable_at_step has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: read_variable_at_step with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'target_step': 10, 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool read_variable_at_step: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call read_variable_at_step: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for read_variable_at_step to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🧹 Cleaned arguments for add_variables: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': '0', 'step2': '0', 'var1': '', 'var2': ''} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': ''}
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Focused agent: Suggested variable content for add_variables
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔧 Enhanced parameters for add_variables: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': ''} -> {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': '', 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: add_variables
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "step1": 0,
+  "step2": 0,
+  "var1": "",
+  "var2": "",
+  "variable_name": "content"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool add_variables has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: add_variables with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'step1': 0, 'step2': 0, 'var1': '', 'var2': '', 'variable_name': 'content'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool add_variables: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call add_variables: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for add_variables to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: inspect_attributes
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp",
+  "variable_name": ""
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool inspect_attributes has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: inspect_attributes with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp', 'variable_name': ''}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call inspect_attributes: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for inspect_attributes to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 🔨 Executing tool: read_bp5
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp"
+}
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - ⚠️  Tool read_bp5 has missing prerequisites: ['list_bp5']
+2025-06-28 03:08:00 - shared.mcp.client - INFO - Calling MCP tool: read_bp5 with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp'}
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error communicating with MCP server: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.mcp.client - ERROR - Error calling tool read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.llm_agent - ERROR - Error executing agentic tool call read_bp5: [Errno 32] Broken pipe
+2025-06-28 03:08:00 - shared.core.tool_context - INFO - Added tool result for read_bp5 to conversation 566fc3b0-c7cb-475b-89cd-04af469b8ab8
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - Iteration 1: executed 69 tools
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - Sufficient data collected - proceeding to synthesis
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - Starting parser prompt synthesis
+2025-06-28 03:08:00 - uvicorn.error - INFO - Shutting down
+2025-06-28 03:08:00 - httpx - INFO - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-06-28 03:08:00 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 🤖 ORCHESTRATOR → MODEL
+║ Phase: PHASE 2 - RESPONSE SYNTHESIS (Iteration 1)
+║ 
+║ 📝 User Prompt:
+║ # ADIOS2 Parser Synthesis Prompt
+
+Based on the scientific data analysis results below, provide a direct, factual answer to the user's question.
+
+## USER QUESTION:
+Based on all the data in your file, what kind of scientific simulation do you think this represents and what are the key findings?
+
+## ANALYSIS RESULTS:
+### Tool 1: inspect_variables
+{
+  "nproc": {
+    "AvailableStepsCount": "1",
+    "Max": "2",
+    "Min": "2",
+    "Shape": "",
+    "SingleValue": "true",
+    "Type": "int64_t"
+  },
+  "physical_time": {
+    "AvailableStepsCount": "5",
+    "Max": "0.04",
+    "Min": "0",
+    "Shape": "",
+    "SingleValue": "true",
+    "Type": "double"
+  },
+  "pressure": {
+    "AvailableStepsCount": "5",
+    "Max": "1",
+    "Min": "1",
+    "Shape": "20",
+    "SingleValue": "false",
+    "Type": "double"
+  },
+  "temperature": {
+    "AvailableStepsCount": "5",
+    "Max": "0",
+    "Min": "0",
+    "Shape": "20",
+    "SingleValue": "false",
+    "Type": "double"
+  }
+}
+
+### Tool 2: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 3: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 4: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 5: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 6: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 7: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 8: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 9: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 10: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 11: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 12: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 13: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 14: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 15: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 16: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 17: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 18: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 19: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 20: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 21: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 22: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 23: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 24: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 25: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 26: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 27: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 28: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 29: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 30: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 31: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 32: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 33: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 34: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 35: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 36: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 37: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 38: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 39: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 40: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 41: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 42: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 43: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 44: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 45: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 46: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 47: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 48: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 49: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 50: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 51: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 52: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 53: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 54: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 55: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 56: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 57: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 58: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 59: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 60: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 61: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 62: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 63: add_variables
+Error calling tool 'add_variables': 1 validation error for call[add_variables_tool]
+variable_name
+  Unexpected keyword argument [type=unexpected_keyword_argument, input_value='content', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/unexpected_keyword_argument
+
+### Tool 64: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 65: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 66: get_min_max
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Incorrect Variable name or No data found for variable 'density'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "get_min_max",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+### Tool 67: read_bp5
+{
+  "nproc": {
+    "Step:0": 2
+  },
+  "physical_time": {
+    "Step:0": 0.0,
+    "Step:1": 0.01,
+    "Step:2": 0.02,
+    "Step:3": 0.03,
+    "Step:4": 0.04
+  },
+  "pressure": {
+    "Step:0": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:2": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:3": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Step:4": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "temperature": {
+    "Step:0": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:1": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:2": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Step:4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}
+
+### Tool 68: inspect_attributes
+{
+  "pressure/unit": {
+    "value": [
+      "Pa"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  },
+  "temperature/unit": {
+    "value": [
+      "K"
+    ],
+    "Type": "string",
+    "Elements": "1"
+  }
+}
+
+### Tool 69: read_variable_at_step
+{
+  "content": [
+    {
+      "text": "{\"error\": \"Step 10 not found in file '/home/jcernuda/micro_agent/adios/data/data1.bp'\"}"
+    }
+  ],
+  "_meta": {
+    "tool": "read_variable_at_step",
+    "error": "ValueError"
+  },
+  "isError": true
+}
+
+**Error with add_variables:**
+No response from MCP server
+
+**Error with inspect_attributes:**
+[Errno 32] Broken pipe
+
+**Error with read_bp5:**
+[Errno 32] Broken pipe
+
+**Error with get_min_max:**
+[Errno 32] Broken pipe
+
+**Error with read_bp5:**
+[Errno 32] Broken pipe
+
+**Error with inspect_attributes:**
+[Errno 32] Broken pipe
+
+**Error with read_variable_at_step:**
+[Errno 32] Broken pipe
+
+**Error with add_variables:**
+[Errno 32] Broken pipe
+
+**Error with inspect_attributes:**
+[Errno 32] Broken pipe
+
+**Error with read_bp5:**
+[Errno 32] Broken pipe
+
+**Error with get_min_max:**
+[Errno 32] Broken pipe
+
+**Error with read_bp5:**
+[Errno 32] Broken pipe
+
+**Error with inspect_attributes:**
+[Errno 32] Broken pipe
+
+**Error with read_variable_at_step:**
+[Errno 32] Broken pipe
+
+**Error with add_variables:**
+[Errno 32] Broken pipe
+
+**Error with inspect_attributes:**
+[Errno 32] Broken pipe
+
+**Error with read_bp5:**
+[Errno 32] Broken pipe
+
+
+## RESPONSE REQUIREMENTS:
+1. Answer ONLY what the user asked - do not speculate or add interpretations
+2. Use the exact data from the analysis results
+3. Be factual and precise with numbers and measurements
+4. Do NOT make assumptions about what kind of simulation this might be
+5. Do NOT suggest causes, mechanisms, or scientific explanations not present in the data
+6. If the data shows errors or missing values, acknowledge them honestly
+7. Keep responses concise and directly relevant to the question
+
+Provide a direct, factual response using only the information present in the analysis results.
+║ 
+║ 🎯 System Prompt:
+║ # ADIOS2 Synthesis System Prompt
+
+You are a precise data reporter who provides factual answers based strictly on the provided analysis results. Do not speculate or add interpretations beyond what is e...
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:08:00 - uvicorn.error - INFO - Finished server process [150000]
+2025-06-28 03:08:00 - uvicorn.error - ERROR - Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1126, in main
+    rv = await self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1496, in invoke
+    return await ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 829, in invoke
+    rv = await rv
+         ^^^^^^^^
+  File "/home/jcernuda/micro_agent/server/main.py", line 297, in main
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 69, in serve
+    with self.capture_signals():
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 330, in capture_signals
+    signal.raise_signal(captured_signal)
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 157, in _on_sigint
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1139, in main
+    raise Abort() from e
+asyncclick.exceptions.Abort
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2310, in run
+    return runner.run(wrapper())
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 651, in run_until_complete
+    self.run_forever()
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 618, in run_forever
+    self._run_once()
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 1951, in _run_once
+    handle._run()
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2298, in wrapper
+    return await func(*args)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1214, in _main
+    return await main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1169, in main
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/routing.py", line 699, in lifespan
+    await receive()
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-06-28 03:08:00 - asyncio - ERROR - Exception in callback EventConsumer.agent_task_callback(<Task cancell...metry.py:144>>) at /home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/events/event_consumer.py:139
+handle: <Handle EventConsumer.agent_task_callback(<Task cancell...metry.py:144>>) at /home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/events/event_consumer.py:139>
+Traceback (most recent call last):
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/utils/telemetry.py", line 195, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/events/event_consumer.py", line 149, in agent_task_callback
+    if agent_task.exception() is not None:
+       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/utils/telemetry.py", line 161, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/request_handlers/default_request_handler.py", line 159, in _run_event_stream
+    await self.agent_executor.execute(request, queue)
+  File "/home/jcernuda/micro_agent/shared/core/llm_agent.py", line 421, in execute
+    final_response = await self._cognitive_processing_loop(user_input, conversation_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/shared/core/llm_agent.py", line 517, in _cognitive_processing_loop
+    final_response = await self._synthesize_natural_language_response(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/shared/core/llm_agent.py", line 765, in _synthesize_natural_language_response
+    synthesis_response = await provider.generate(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/shared/llm/ollama.py", line 49, in generate
+    return await self._generate_simple(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/shared/llm/ollama.py", line 164, in _generate_simple
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1254, in receive
+    await self._protocol.read_event.wait()
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/locks.py", line 212, in wait
+    await fut
+asyncio.exceptions.CancelledError
+2025-06-28 03:08:00 - uvicorn.error - ERROR - Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1126, in main
+    rv = await self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1496, in invoke
+    return await ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 829, in invoke
+    rv = await rv
+         ^^^^^^^^
+  File "/home/jcernuda/micro_agent/server/main.py", line 297, in main
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 69, in serve
+    with self.capture_signals():
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 330, in capture_signals
+    signal.raise_signal(captured_signal)
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 157, in _on_sigint
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1139, in main
+    raise Abort() from e
+asyncclick.exceptions.Abort
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2310, in run
+    return runner.run(wrapper())
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 651, in run_until_complete
+    self.run_forever()
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 618, in run_forever
+    self._run_once()
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 1951, in _run_once
+    handle._run()
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2298, in wrapper
+    return await func(*args)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1214, in _main
+    return await main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/asyncclick/core.py", line 1169, in main
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/request_handlers/default_request_handler.py", line 224, in on_message_send
+    ) = await result_aggregator.consume_and_break_on_interrupt(consumer)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/tasks/result_aggregator.py", line 115, in consume_and_break_on_interrupt
+    async for event in event_stream:
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/events/event_consumer.py", line 92, in consume_all
+    event = await asyncio.wait_for(
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py", line 510, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/utils/telemetry.py", line 161, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/events/event_queue.py", line 106, in dequeue_event
+    event = await self.queue.get()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/.local/share/uv/python/cpython-3.12.0-linux-x86_64-gnu/lib/python3.12/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/apps/jsonrpc/jsonrpc_app.py", line 210, in _handle_requests
+    return await self._process_non_streaming_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/apps/jsonrpc/jsonrpc_app.py", line 288, in _process_non_streaming_request
+    handler_result = await self.handler.on_message_send(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/utils/telemetry.py", line 161, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/request_handlers/jsonrpc_handler.py", line 81, in on_message_send
+    task_or_message = await self.request_handler.on_message_send(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/utils/telemetry.py", line 161, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/request_handlers/default_request_handler.py", line 243, in on_message_send
+    await self._cleanup_producer(producer_task, task_id)
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/utils/telemetry.py", line 161, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jcernuda/micro_agent/.venv/lib/python3.12/site-packages/a2a/server/request_handlers/default_request_handler.py", line 347, in _cleanup_producer
+    await producer_task
+asyncio.exceptions.CancelledError

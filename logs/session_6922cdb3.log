@@ -1,0 +1,14 @@
+2025-06-28 03:36:04 - shared.core.config_loader - INFO - No config file found, using defaults
+2025-06-28 03:36:04 - shared.core.llm_agent - WARNING - Configuration issues: ["Default provider 'gemini' not configured"]
+2025-06-28 03:36:04 - shared.core.llm_agent - INFO - No external prompts configured
+2025-06-28 03:36:04 - shared.core.llm_agent - INFO - LLM Agent log_everything setting: True
+2025-06-28 03:36:04 - shared.core.llm_agent - INFO - Initialized A2A CLI AI Agent with gemini provider
+2025-06-28 03:36:04 - server.main - INFO - Created A2A server with agent: A2A CLI AI Agent
+2025-06-28 03:36:04 - server.main - INFO - Starting A2A CLI server on localhost:8000
+2025-06-28 03:36:04 - server.main - INFO - Mode: LLM-powered agent
+2025-06-28 03:36:04 - server.main - INFO - Agent card available at: http://localhost:8000/.well-known/agent.json
+2025-06-28 03:36:04 - uvicorn.error - INFO - Started server process [202911]
+2025-06-28 03:36:04 - uvicorn.error - INFO - Waiting for application startup.
+2025-06-28 03:36:04 - shared.core.llm_agent - INFO - No MCP servers configured
+2025-06-28 03:36:04 - uvicorn.error - INFO - Application startup complete.
+2025-06-28 03:36:04 - uvicorn.error - INFO - Uvicorn running on http://localhost:8000 (Press CTRL+C to quit)

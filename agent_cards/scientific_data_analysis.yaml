@@ -1,0 +1,72 @@
+# Scientific Data Analysis Agent Card Configuration
+agent_card:
+  # Basic agent information (name, description, version come from main config)
+  default_input_modes:
+    - "text"
+  default_output_modes:
+    - "text"
+  
+  capabilities:
+    streaming: true
+    push_notifications: false
+  
+  skills:
+    - id: "scientific_data_analysis"
+      name: "Scientific Data Analysis"
+      description: "Analyze scientific datasets and provide insights"
+      tags:
+        - "science"
+        - "data"
+        - "analysis"
+      examples:
+        - "Analyze this simulation data"
+        - "What variables are in this dataset?"
+        - "Compare these scientific measurements"
+    
+    - id: "data_exploration"
+      name: "Data Exploration" 
+      description: "Explore and understand dataset structure and contents"
+      tags:
+        - "exploration"
+        - "metadata"
+        - "discovery"
+      examples:
+        - "What files are available for analysis?"
+        - "Show me the variables in this dataset"
+        - "Explore the structure of this data"
+    
+    - id: "statistical_analysis"
+      name: "Statistical Analysis"
+      description: "Perform statistical calculations and comparisons"
+      tags:
+        - "statistics"
+        - "math"
+        - "comparison"
+      examples:
+        - "Calculate min/max values for this variable"
+        - "Compare these variables statistically"
+        - "What are the statistical properties?"
+    
+    - id: "temporal_analysis"
+      name: "Temporal Analysis"
+      description: "Analyze time-series data and temporal patterns"
+      tags:
+        - "time"
+        - "temporal"
+        - "dynamics"
+      examples:
+        - "Analyze changes over time"
+        - "Show temporal dynamics"
+        - "Track variable evolution"
+    
+    - id: "question_answering"
+      name: "Question Answering"
+      description: "Answer questions about datasets and analysis results"
+      tags:
+        - "qa"
+        - "knowledge"
+        - "help"
+      examples:
+        - "What does this data represent?"
+        - "Explain these results"
+        - "How do I interpret this analysis?"

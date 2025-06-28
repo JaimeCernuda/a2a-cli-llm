@@ -126,8 +126,8 @@ class LLMAgentExecutor(AgentExecutor):
         if self.config.agent.system_prompt:
             return self.config.agent.system_prompt
         
-        # Ultimate fallback
-        return "You are a helpful AI assistant specialized in ADIOS2 data analysis."
+        # Ultimate fallback - keep domain-agnostic
+        return "You are a helpful AI assistant for scientific data analysis."
     
     def _load_prompts(self) -> Dict[str, str]:
         """Load external prompt files if configured."""
@@ -200,85 +200,10 @@ class LLMAgentExecutor(AgentExecutor):
                     if "required" in input_schema:
                         ollama_tool["function"]["parameters"]["required"] = input_schema["required"]
                 else:
-                    # Fallback: infer parameters from tool name and description
-                    if mcp_tool_name == "list_bp5":
-                        ollama_tool["function"]["parameters"]["properties"]["directory"] = {
-                            "type": "string",
-                            "description": "Directory path to search for BP5 files",
-                            "default": "data/"
-                        }
-                    elif mcp_tool_name == "inspect_variables":
-                        ollama_tool["function"]["parameters"]["properties"]["filename"] = {
-                            "type": "string", 
-                            "description": "Path to the BP5 file"
-                        }
-                        ollama_tool["function"]["parameters"]["required"] = ["filename"]
-                    elif mcp_tool_name == "inspect_attributes":
-                        ollama_tool["function"]["parameters"]["properties"]["filename"] = {
-                            "type": "string",
-                            "description": "Path to the BP5 file"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["variable_name"] = {
-                            "type": "string",
-                            "description": "Optional variable name for variable-specific attributes"
-                        }
-                        ollama_tool["function"]["parameters"]["required"] = ["filename"]
-                    elif mcp_tool_name == "read_variable_at_step":
-                        ollama_tool["function"]["parameters"]["properties"]["filename"] = {
-                            "type": "string",
-                            "description": "Path to the BP5 file"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["variable_name"] = {
-                            "type": "string",
-                            "description": "Name of the variable to read"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["target_step"] = {
-                            "type": "integer",
-                            "description": "Step number to read from"
-                        }
-                        ollama_tool["function"]["parameters"]["required"] = ["filename", "variable_name", "target_step"]
-                    elif mcp_tool_name == "read_bp5":
-                        ollama_tool["function"]["parameters"]["properties"]["filename"] = {
-                            "type": "string",
-                            "description": "Path to the BP5 file"
-                        }
-                        ollama_tool["function"]["parameters"]["required"] = ["filename"]
-                    elif mcp_tool_name == "get_min_max":
-                        ollama_tool["function"]["parameters"]["properties"]["filename"] = {
-                            "type": "string",
-                            "description": "Path to the BP5 file"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["variable_name"] = {
-                            "type": "string",
-                            "description": "Name of the variable"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["step"] = {
-                            "type": "integer",
-                            "description": "Optional step number"
-                        }
-                        ollama_tool["function"]["parameters"]["required"] = ["filename", "variable_name"]
-                    elif mcp_tool_name == "add_variables":
-                        ollama_tool["function"]["parameters"]["properties"]["filename"] = {
-                            "type": "string",
-                            "description": "Path to the BP5 file"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["var1"] = {
-                            "type": "string",
-                            "description": "First variable name"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["var2"] = {
-                            "type": "string",
-                            "description": "Second variable name"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["step1"] = {
-                            "type": "integer",
-                            "description": "Optional step for first variable"
-                        }
-                        ollama_tool["function"]["parameters"]["properties"]["step2"] = {
-                            "type": "integer",
-                            "description": "Optional step for second variable"
-                        }
-                        ollama_tool["function"]["parameters"]["required"] = ["filename", "var1", "var2"]
+                    # No inputSchema available - this indicates a problem with the MCP server
+                    # Rather than hardcoding tool-specific fallbacks, we should fail gracefully
+                    logger.error(f"Tool {mcp_tool_name} has no inputSchema - MCP server may be misconfigured")
+                    raise RuntimeError(f"Tool {mcp_tool_name} is missing required inputSchema. This suggests the MCP server is not properly configured or the tool definition is incomplete.")
                 
                 ollama_tools.append(ollama_tool)
         
@@ -570,11 +495,11 @@ Continue your cognitive processing. If you have completed all necessary tasks, p
         enhanced_prompt += """
 
 ## Critical Tool Chaining Instructions:
-- ALWAYS use the exact file paths returned by list_bp5 in subsequent tool calls
-- When inspect_variables or other tools need a filename, use the full absolute path from previous tool results
-- For ADIOS2 analysis, ALWAYS start with list_bp5 to discover available files
+- ALWAYS use the exact file paths returned by file discovery tools in subsequent tool calls
+- When tools need a filename, use the full absolute path from previous tool results
+- Start with file discovery tools to find available data files
 - Use the discovered file paths exactly as returned - do not modify or truncate them
-- If a tool call fails due to file not found, check the exact paths from list_bp5 results
+- If a tool call fails due to file not found, check the exact paths from discovery results
 """
         
         return enhanced_prompt
@@ -593,15 +518,13 @@ Continue your cognitive processing. If you have completed all necessary tasks, p
             else:
                 tool_focused_prompt = base_prompt
         else:
-            # Fallback to hardcoded prompt
-            tool_focused_prompt = f"""You are the Data1.bp File Agent specialized in analyzing /home/jcernuda/micro_agent/adios/data/data1.bp.
+            # Fallback to generic prompt - should be configured via external prompts instead
+            logger.warning("No tool_execution prompt configured - using generic fallback. Consider adding external prompts for better performance.")
+            tool_focused_prompt = f"""You are a scientific data analysis agent.
 
 ## PRIMARY DIRECTIVE:
 Execute tools efficiently to gather data. Do NOT provide explanations or natural language responses.
 Your only job is to call the appropriate tools with correct parameters.
-
-## FILE PATH:
-Always use: /home/jcernuda/micro_agent/adios/data/data1.bp
 
 ## TOOL EXECUTION RULES:
 1. Call tools with minimal response text
@@ -610,14 +533,6 @@ Always use: /home/jcernuda/micro_agent/adios/data/data1.bp
 4. Don't provide analysis or conclusions - just gather data
 
 {f"## CONVERSATION CONTEXT:\\n{context_summary}" if context_summary else ""}
-
-## AVAILABLE TOOLS:
-- inspect_variables: Get variable metadata
-- read_bp5: Read all data from file
-- get_min_max: Get min/max values for specific variables
-- inspect_attributes: Get file attributes
-- read_variable_at_step: Read specific variable at specific step
-- add_variables: Add two variables together
 
 Execute the necessary tools to answer the user's question, then stop."""
         

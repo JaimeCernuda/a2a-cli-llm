@@ -1,0 +1,3 @@
+2025-06-28 03:46:52 - shared.core.config_loader - INFO - Loaded configuration from config_data1_agent.yaml
+2025-06-28 03:46:52 - shared.core.agent_card_loader - ERROR - No external agent card configuration provided and no fallback available
+2025-06-28 03:46:52 - __main__ - ERROR - Failed to start server: Agent card configuration is required but not provided. Please specify 'agent_card' in your configuration file pointing to a valid agent card YAML file. This ensures the agent's capabilities and skills are properly defined for your specific use case.

@@ -6,6 +6,7 @@ agent:
   description: "Specialized agent for analyzing /home/jcernuda/micro_agent/adios/data/data1.bp"
   version: "1.0.0"
   persona: "data1_bp_agent"
+  agent_card: "agent_cards/scientific_data_analysis.yaml"
   prompts:
     tool_execution: "personas/adios/adios2_tool_execution.md"
     parser_synthesis: "personas/adios/adios2_parser_synthesis.md"

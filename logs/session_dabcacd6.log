@@ -1,0 +1,234 @@
+2025-06-28 03:47:37 - shared.core.config_loader - INFO - Loaded configuration from config_data1_agent.yaml
+2025-06-28 03:47:37 - shared.core.agent_card_loader - INFO - Loading agent card configuration from: agent_cards/scientific_data_analysis.yaml
+2025-06-28 03:47:37 - shared.core.agent_card_loader - INFO - Successfully loaded agent card configuration
+2025-06-28 03:47:37 - shared.core.agent_card_loader - INFO - Using external agent card configuration
+2025-06-28 03:47:37 - shared.core.agent_card_loader - INFO - Created agent card with 5 skills from external configuration
+2025-06-28 03:47:37 - shared.core.prompt_loader - INFO - Loaded prompt 'tool_execution' from: personas/adios/adios2_tool_execution.md
+2025-06-28 03:47:37 - shared.core.prompt_loader - INFO - Loaded prompt 'parser_synthesis' from: personas/adios/adios2_parser_synthesis.md
+2025-06-28 03:47:37 - shared.core.prompt_loader - INFO - Loaded prompt 'synthesis_system' from: personas/adios/adios2_synthesis_system.md
+2025-06-28 03:47:37 - shared.core.llm_agent - INFO - Loaded 3 external prompts: ['tool_execution', 'parser_synthesis', 'synthesis_system']
+2025-06-28 03:47:37 - shared.core.llm_agent - INFO - LLM Agent log_everything setting: True
+2025-06-28 03:47:37 - shared.core.llm_agent - INFO - Initialized Data1.bp File Agent with ollama provider
+2025-06-28 03:47:37 - __main__ - INFO - Created A2A server with agent: Data1.bp File Agent
+2025-06-28 03:47:37 - __main__ - INFO - Starting A2A CLI server on localhost:8000
+2025-06-28 03:47:37 - __main__ - INFO - Mode: LLM-powered agent
+2025-06-28 03:47:37 - __main__ - INFO - Using configuration from: config_data1_agent.yaml
+2025-06-28 03:47:37 - __main__ - INFO - Agent card available at: http://localhost:8000/.well-known/agent.json
+2025-06-28 03:47:37 - uvicorn.error - INFO - Started server process [212418]
+2025-06-28 03:47:37 - uvicorn.error - INFO - Waiting for application startup.
+2025-06-28 03:47:37 - shared.core.llm_agent - INFO - Initializing 1 MCP servers...
+2025-06-28 03:47:37 - shared.mcp.client - INFO - Starting MCP server: uv --directory adios run adios-mcp
+2025-06-28 03:47:38 - shared.mcp.client - INFO - Connected to MCP server with 7 tools
+2025-06-28 03:47:38 - shared.mcp.manager - INFO - Added MCP server 'adios2' with 7 tools
+2025-06-28 03:47:38 - shared.core.llm_agent - INFO - ✅ MCP server 'adios2' connected with 7 tools
+2025-06-28 03:47:38 - uvicorn.error - INFO - Application startup complete.
+2025-06-28 03:47:38 - uvicorn.error - INFO - Uvicorn running on http://localhost:8000 (Press CTRL+C to quit)
+2025-06-28 03:47:49 - shared.core.llm_agent - INFO - Processing cognitive LLM request: What variables are in your file?...
+2025-06-28 03:47:49 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 👤 USER QUERY SUBMISSION
+║ Conversation ID: 7433fb1d-f0cf-4eb4-8652-7f1ddfbf9148
+║ Query: What variables are in your file?
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:47:49 - shared.core.llm_agent - INFO - Starting cognitive processing with parser approach for: What variables are in your file?...
+2025-06-28 03:47:49 - shared.core.llm_agent - INFO - Tool execution iteration 1
+2025-06-28 03:47:49 - shared.llm.base - INFO - Initializing ollama provider
+2025-06-28 03:47:49 - shared.llm.ollama - INFO - Initialized Ollama provider with model: llama3.2:1b
+2025-06-28 03:47:49 - shared.llm.ollama - INFO - Ollama base URL: http://localhost:11434
+2025-06-28 03:47:49 - httpx - INFO - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-06-28 03:47:49 - shared.core.llm_agent - INFO - Successfully initialized ollama provider
+2025-06-28 03:47:49 - httpx - INFO - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-06-28 03:47:49 - shared.core.tool_context - INFO - Created new conversation context: 7433fb1d-f0cf-4eb4-8652-7f1ddfbf9148
+2025-06-28 03:47:49 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 🤖 ORCHESTRATOR → MODEL
+║ Phase: PHASE 1 - TOOL EXECUTION (Iteration 1)
+║ 
+║ 📝 User Prompt:
+║ What variables are in your file?
+║ 
+║ 🎯 System Prompt:
+║ # ADIOS2 Tool Execution Prompt
+
+You are the Data1.bp File Agent specialized in analyzing /home/jcernuda/micro_agent/adios/data/data1.bp.
+
+## PRIMARY DIRECTIVE:
+Execute tools efficiently to gather data...
+║ Available Tools: 7 tools
+║   1. list_bp5
+║   2. inspect_variables
+║   3. inspect_attributes
+║   4. read_variable_at_step
+║   5. read_bp5
+║   6. get_min_max
+║   7. add_variables
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:47:49 - shared.llm.ollama - INFO - Calling Ollama chat API with 7 tools
+2025-06-28 03:48:06 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 🔄 MODEL → ORCHESTRATOR  
+║ Phase: PHASE 1 - TOOL EXECUTION
+║ Response Length: 0 characters
+║ Tool Calls Requested: 1
+║   → inspect_variables
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - Processing 1 agentic tool calls
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - 🔨 Executing tool: inspect_variables
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - 📋 Arguments:
+{
+  "filename": "/home/jcernuda/micro_agent/adios/data/data1.bp"
+}
+2025-06-28 03:48:06 - shared.mcp.client - INFO - Calling MCP tool: inspect_variables with args: {'filename': '/home/jcernuda/micro_agent/adios/data/data1.bp'}
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 🔧 TOOL EXECUTION
+║ Tool: inspect_variables
+║ Status: ✅ SUCCESS (4.2ms)
+║ 
+║ 📋 Arguments:
+║   filename: /home/jcernuda/micro_agent/adios/data/data1.bp
+║ 
+║ 📤 Result Preview:
+║ {
+  "nproc": {
+    "AvailableStepsCount": "1",
+    "Max": "2",
+    "Min": "2",
+    "Shape": "",
+    "SingleValue": "true",
+    "Type": "int64_t"
+  },
+  "physical_time": {
+    "AvailableStepsCount": "5",
+    "Max": "0.04",
+    "Min": "0",
+    "Shape": "",
+    "SingleValue": "true",
+    "Type": "doubl...
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:48:06 - shared.core.tool_context - INFO - Added tool result for inspect_variables to conversation 7433fb1d-f0cf-4eb4-8652-7f1ddfbf9148
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - Iteration 1: executed 1 tools
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - Sufficient data collected - proceeding to synthesis
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - Starting parser prompt synthesis
+2025-06-28 03:48:06 - httpx - INFO - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-06-28 03:48:06 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 🤖 ORCHESTRATOR → MODEL
+║ Phase: PHASE 2 - RESPONSE SYNTHESIS (Iteration 1)
+║ 
+║ 📝 User Prompt:
+║ # ADIOS2 Parser Synthesis Prompt
+
+Based on the scientific data analysis results below, provide a direct, factual answer to the user's question.
+
+## USER QUESTION:
+What variables are in your file?
+
+## ANALYSIS RESULTS:
+### Tool 1: inspect_variables
+{
+  "nproc": {
+    "AvailableStepsCount": "1",
+    "Max": "2",
+    "Min": "2",
+    "Shape": "",
+    "SingleValue": "true",
+    "Type": "int64_t"
+  },
+  "physical_time": {
+    "AvailableStepsCount": "5",
+    "Max": "0.04",
+    "Min": "0",
+    "Shape": "",
+    "SingleValue": "true",
+    "Type": "double"
+  },
+  "pressure": {
+    "AvailableStepsCount": "5",
+    "Max": "1",
+    "Min": "1",
+    "Shape": "20",
+    "SingleValue": "false",
+    "Type": "double"
+  },
+  "temperature": {
+    "AvailableStepsCount": "5",
+    "Max": "0",
+    "Min": "0",
+    "Shape": "20",
+    "SingleValue": "false",
+    "Type": "double"
+  }
+}
+
+
+## RESPONSE REQUIREMENTS:
+1. Answer ONLY what the user asked - do not speculate or add interpretations
+2. Use the exact data from the analysis results
+3. Be factual and precise with numbers and measurements
+4. Do NOT make assumptions about what kind of simulation this might be
+5. Do NOT suggest causes, mechanisms, or scientific explanations not present in the data
+6. If the data shows errors or missing values, acknowledge them honestly
+7. Keep responses concise and directly relevant to the question
+
+Provide a direct, factual response using only the information present in the analysis results.
+║ 
+║ 🎯 System Prompt:
+║ # ADIOS2 Synthesis System Prompt
+
+You are a precise data reporter who provides factual answers based strictly on the provided analysis results. Do not speculate or add interpretations beyond what is e...
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:48:14 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-28 03:48:14 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ ✨ SYNTHESIS COMPLETE
+║ Original Query: What variables are in your file?
+║ Tools Executed: 1
+║ Response Length: 91 characters
+║ 
+║ 📤 Final Response:
+║ ## Variables in your file:
+
+* nproc: 2
+* physical_time: 0.04
+* pressure: 1
+* temperature: 0
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:48:14 - shared.core.llm_agent - INFO - Generated synthesis response: 91 characters
+2025-06-28 03:48:17 - shared.core.llm_agent - INFO - Processing cognitive LLM request: What are the min and max values for temperature?...
+2025-06-28 03:48:17 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 👤 USER QUERY SUBMISSION
+║ Conversation ID: 33307c8c-41c9-4405-9dd0-bbe067fad521
+║ Query: What are the min and max values for temperature?
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:48:17 - shared.core.llm_agent - INFO - Starting cognitive processing with parser approach for: What are the min and max values for temperature?...
+2025-06-28 03:48:17 - shared.core.llm_agent - INFO - Tool execution iteration 1
+2025-06-28 03:48:17 - httpx - INFO - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-06-28 03:48:17 - shared.core.tool_context - INFO - Created new conversation context: 33307c8c-41c9-4405-9dd0-bbe067fad521
+2025-06-28 03:48:17 - shared.core.llm_agent - INFO - 
+╔══════════════════════════════════════════════════════════════════════════════════
+║ 🤖 ORCHESTRATOR → MODEL
+║ Phase: PHASE 1 - TOOL EXECUTION (Iteration 1)
+║ 
+║ 📝 User Prompt:
+║ What are the min and max values for temperature?
+║ 
+║ 🎯 System Prompt:
+║ # ADIOS2 Tool Execution Prompt
+
+You are the Data1.bp File Agent specialized in analyzing /home/jcernuda/micro_agent/adios/data/data1.bp.
+
+## PRIMARY DIRECTIVE:
+Execute tools efficiently to gather data...
+║ Available Tools: 7 tools
+║   1. list_bp5
+║   2. inspect_variables
+║   3. inspect_attributes
+║   4. read_variable_at_step
+║   5. read_bp5
+║   6. get_min_max
+║   7. add_variables
+╚══════════════════════════════════════════════════════════════════════════════════
+2025-06-28 03:48:17 - shared.llm.ollama - INFO - Calling Ollama chat API with 7 tools

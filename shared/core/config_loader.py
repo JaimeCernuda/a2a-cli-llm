@@ -21,6 +21,7 @@ class AgentConfig:
     persona: Optional[str] = None
     system_prompt: Optional[str] = None
     prompts: Optional[Dict[str, str]] = None
+    agent_card: Optional[str] = None
 
 
 @dataclass
@@ -179,7 +180,8 @@ class ConfigLoader:
                         version=agent_data.get("version", "0.2.0"),
                         persona=agent_data.get("persona"),
                         system_prompt=agent_data.get("system_prompt"),
-                        prompts=agent_data.get("prompts")
+                        prompts=agent_data.get("prompts"),
+                        agent_card=agent_data.get("agent_card")
                     )
                 
                 # Parse provider configs

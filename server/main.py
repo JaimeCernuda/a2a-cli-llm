@@ -14,6 +14,7 @@ from a2a.types import AgentCard, AgentCapabilities, AgentSkill
 
 from shared.core.llm_agent import LLMAgentExecutor
 from shared.core.config_loader import ConfigLoader
+from shared.core.agent_card_loader import AgentCardLoader
 from shared.core.utils import setup_logging, setup_session_logging
 
 
@@ -21,56 +22,20 @@ logger = logging.getLogger(__name__)
 
 
 def create_agent_card(host: str, port: int, config) -> AgentCard:
-    """Create agent card for LLM-powered agent."""
-    return AgentCard(
-        name=config.agent.name,
-        description=config.agent.description,
-        url=f"http://{host}:{port}/",
-        version=config.agent.version,
-        defaultInputModes=["text"],
-        defaultOutputModes=["text"],
-        capabilities=AgentCapabilities(
-            streaming=True,
-            pushNotifications=False
-        ),
-        skills=[
-            AgentSkill(
-                id="ai_conversation",
-                name="AI Conversation",
-                description=f"Intelligent conversation powered by {config.default_provider} LLM",
-                tags=["ai", "conversation", "general"],
-                examples=["Tell me about quantum computing", "Help me write code", "Explain this concept"]
-            ),
-            AgentSkill(
-                id="question_answering",
-                name="Question Answering",
-                description="Answer questions on a wide range of topics",
-                tags=["qa", "knowledge", "help"],
-                examples=["What is machine learning?", "How do I use Python?", "Explain the A2A protocol"]
-            ),
-            AgentSkill(
-                id="code_assistance",
-                name="Code Assistance",
-                description="Help with programming, debugging, and code review",
-                tags=["coding", "programming", "debug"],
-                examples=["Review this Python code", "Fix this bug", "Suggest improvements"]
-            ),
-            AgentSkill(
-                id="file_analysis",
-                name="File Analysis",
-                description="Analyze and process uploaded files with AI",
-                tags=["file", "analysis", "ai"],
-                examples=["Analyze this document", "Summarize this text file", "Review this code file"]
-            ),
-            AgentSkill(
-                id="general_assistance",
-                name="General Assistance",
-                description="General purpose AI assistance for various tasks",
-                tags=["general", "help", "assistant"],
-                examples=["Help me plan a project", "Brainstorm ideas", "Solve this problem"]
+    """Create agent card for LLM-powered agent using external configuration."""
+    # Load external agent card configuration if specified
+    agent_card_config = None
+    if config.agent.agent_card:
+        agent_card_config = AgentCardLoader.load_agent_card_config(config.agent.agent_card)
+        if agent_card_config is None:
+            raise RuntimeError(
+                f"Failed to load agent card configuration from '{config.agent.agent_card}'. "
+                "Please check that the file exists and is properly formatted. "
+                "Agent card configuration is required for proper server operation."
             )
-        ]
-    )
+    
+    # Use the agent card loader to create the card
+    return AgentCardLoader.create_agent_card_from_config(host, port, config, agent_card_config)
 
 
 def create_server_app(host: str, port: int, config_path: Optional[str] = None) -> A2AStarletteApplication:

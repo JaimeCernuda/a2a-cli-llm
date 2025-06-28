@@ -59,8 +59,8 @@ class ConversationContext:
     
     def _extract_context_from_result(self, result: ToolResult) -> None:
         """Extract useful context information from tool results."""
-        if result.tool_name == "list_bp5" and result.success:
-            # Extract discovered files from list_bp5 results
+        # Extract discovered files from file listing tools (generic approach)
+        if result.tool_name.startswith(("list_", "discover_", "find_")) and result.success:
             if isinstance(result.result, list):
                 for file_path in result.result:
                     if isinstance(file_path, str):
@@ -74,7 +74,7 @@ class ConversationContext:
                 except json.JSONDecodeError:
                     pass
                     
-        elif result.tool_name == "inspect_variables" and result.success:
+        elif result.tool_name.startswith(("inspect_", "analyze_")) and result.success:
             # Extract variable information from inspect_variables results
             filename = result.arguments.get("filename", "unknown")
             if isinstance(result.result, dict):
@@ -135,14 +135,8 @@ class ToolContextManager:
     
     def __init__(self):
         self.conversations: Dict[str, ConversationContext] = {}
-        self.tool_dependencies = {
-            "inspect_variables": ["list_bp5"],
-            "inspect_attributes": ["list_bp5"],
-            "read_variable_at_step": ["list_bp5", "inspect_variables"],
-            "get_min_max": ["list_bp5", "inspect_variables"],
-            "add_variables": ["list_bp5", "inspect_variables"],
-            "read_bp5": ["list_bp5"]
-        }
+        # Generic tool dependencies - tools that need files should depend on file discovery tools
+        self.tool_dependencies = {}
         
     def get_or_create_conversation(self, conversation_id: str) -> ConversationContext:
         """Get or create a conversation context."""
@@ -157,51 +151,24 @@ class ToolContextManager:
         context = self.get_or_create_conversation(conversation_id)
         suggested_args = user_provided_args.copy()
         
-        # FOCUSED AGENT MODE: Always use the specific file path for data1.bp agent
-        DATA1_BP_PATH = "/home/jcernuda/micro_agent/adios/data/data1.bp"
+        # Generic approach: use discovered files when filename is needed but not provided
+        if "filename" in suggested_args and not suggested_args["filename"]:
+            discovered_files = context.get_discovered_files()
+            if discovered_files:
+                # Use the first discovered file as default
+                suggested_args["filename"] = discovered_files[0]
+                logger.info(f"Suggested filename {discovered_files[0]} for {tool_name} from discovered files")
         
-        # If filename is needed but not provided or incorrect, use the focused file
-        if tool_name in ["inspect_variables", "inspect_attributes", "read_variable_at_step", 
-                        "get_min_max", "add_variables", "read_bp5"]:
-            if "filename" not in suggested_args or not suggested_args["filename"] or suggested_args["filename"] != DATA1_BP_PATH:
-                suggested_args["filename"] = DATA1_BP_PATH
-                logger.info(f"Focused agent: Using data1.bp path for {tool_name}")
-        
-        # For directory-based tools, suggest the data directory
-        if tool_name == "list_bp5":
-            if "directory" not in suggested_args or not suggested_args["directory"]:
-                suggested_args["directory"] = "/home/jcernuda/micro_agent/adios/data"
-                logger.info(f"Focused agent: Using data directory for {tool_name}")
-        
-        # For tools requiring variable names, suggest from analyzed variables of data1.bp
-        if tool_name in ["read_variable_at_step", "get_min_max", "add_variables"]:
-            filename = suggested_args.get("filename", DATA1_BP_PATH)
-            if "variable_name" not in suggested_args or not suggested_args["variable_name"]:
-                variables = context.get_analyzed_variables(filename)
+        # For tools requiring variable names, suggest from analyzed variables if available
+        if "variable_name" in suggested_args and not suggested_args["variable_name"]:
+            # Try to find variables from any analyzed file
+            for filename, variables in context.analyzed_variables.items():
                 if variables:
                     var_names = list(variables.keys())
                     if var_names:
-                        # Prefer scientific variables
-                        preferred_vars = ["pressure", "temperature", "physical_time", "nproc"]
-                        for pref_var in preferred_vars:
-                            if pref_var in var_names:
-                                suggested_args["variable_name"] = pref_var
-                                logger.info(f"Focused agent: Suggested variable {pref_var} for {tool_name}")
-                                break
-                        if "variable_name" not in suggested_args:
-                            suggested_args["variable_name"] = var_names[0]
-                            logger.info(f"Focused agent: Suggested variable {var_names[0]} for {tool_name}")
-        
-        # For add_variables tool, suggest pressure and temperature (common scientific pair)
-        if tool_name == "add_variables":
-            filename = suggested_args.get("filename", DATA1_BP_PATH)
-            variables = context.get_analyzed_variables(filename)
-            if variables:
-                var_names = list(variables.keys())
-                if "var1" not in suggested_args:
-                    suggested_args["var1"] = "pressure" if "pressure" in var_names else var_names[0]
-                if "var2" not in suggested_args:
-                    suggested_args["var2"] = "temperature" if "temperature" in var_names else (var_names[1] if len(var_names) > 1 else var_names[0])
+                        suggested_args["variable_name"] = var_names[0]
+                        logger.info(f"Suggested variable {var_names[0]} for {tool_name} from {filename}")
+                        break
         
         return suggested_args
     
@@ -233,11 +200,11 @@ class ToolContextManager:
         guidance = []
         
         if not context.tool_results:
-            guidance.append("Start by discovering available files using list_bp5.")
+            guidance.append("Start by discovering available files using file discovery tools.")
         
         if context.discovered_files and not context.analyzed_variables:
             files = context.get_discovered_files()
-            guidance.append(f"Files discovered: {files[:3]}. Next, analyze variables using inspect_variables.")
+            guidance.append(f"Files discovered: {files[:3]}. Next, analyze variables or metadata using inspection tools.")
         
         if context.analyzed_variables:
             guidance.append("Variables analyzed. You can now perform detailed analysis, get statistics, or read specific data.")
